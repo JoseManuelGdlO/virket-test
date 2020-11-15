@@ -1,0 +1,7 @@
+{
+  "name": "moovi-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

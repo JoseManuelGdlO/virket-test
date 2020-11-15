@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ApiService } from '../net/ApiService';
-import { AuthRepository } from '../../domain/repository/AuthRepository';
+import { ApiService } from './net/ApiService';
+import { AuthRepository } from '../domain/repository/AuthRepository';
 
 @Injectable()
-export class LoginRepositoryImpl implements AuthRepository {
+export class AuthRepositoryImpl implements AuthRepository {
   private _headers = {};
   private _contenttype = 'content-type';
 
@@ -22,8 +22,7 @@ export class LoginRepositoryImpl implements AuthRepository {
     const body = {
       username,
       password
-    }
-
+    };
     this.setHeaders();
 
     return this.httpClient.post<any>(

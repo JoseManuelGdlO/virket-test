@@ -12,6 +12,7 @@ export class LoginPage implements OnInit {
     public loginPresenter: LoginPresenter
   ) { 
     this.loginPresenter.setView(this);
+    this.login('hola', 'hola');
   }
 
   ngOnInit() {

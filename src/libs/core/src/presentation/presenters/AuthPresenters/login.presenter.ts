@@ -18,7 +18,7 @@ import { BasePresenter } from '../../base.presenter';
         this.view = component as LoginPage;
     }
 
-    async login(username, password): Promise<any> {
+    async login(username: string, password: string): Promise<any> {
         try {
             const response = await this.loginUseCase.login(username, password);
             if (response && response.token) {

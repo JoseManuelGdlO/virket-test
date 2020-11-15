@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginPresenter } from 'src/libs/core/src/presentation/presenters/AuthPresenters/login.presenter';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  constructor(
+    public loginPresenter: LoginPresenter
+  ) { 
+    this.loginPresenter.setView(this);
+  }
 
   ngOnInit() {
+  }
+
+  async login(username, password){
+    const response = await this.loginPresenter.login(username, password);
+
+    if(response) {
+      console.log('Welcome');
+    } else {
+      console.log('ERROR!');
+    }
   }
 
 }

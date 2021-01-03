@@ -5,12 +5,12 @@ export class AuthBase {
 
     constructor(public modalCtrl: ModalController){}
 
-    async showLodaing() {
-        const modal = await this.modalCtrl.create({component: LoadingComponent});
+    async showBaseLodaing() {
+        const modal = await this.modalCtrl.create({component: LoadingComponent, backdropDismiss: false});
         modal.present();
     }
 
-    closeLoading() {
+    closeBaseLoading() {
         this.modalCtrl.dismiss()
     }
 }

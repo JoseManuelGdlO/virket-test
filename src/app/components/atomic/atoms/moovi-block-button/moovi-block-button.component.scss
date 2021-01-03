@@ -1,0 +1,30 @@
+h1, h2, h3, h4, h5, h6 {
+    padding: 0;
+    margin: 0;
+}
+
+.buttonDiv{
+    padding: 5px 10px;
+}
+
+.borderBlock {
+    border-radius: 4px;
+}
+
+.borderRound {
+    border-radius: 30px;
+}
+
+.colorsDiv{
+    transition: opacity .3s;
+}
+
+.colorsDiv:active {
+    opacity: 80% !important;
+}
+
+.h1Style {
+    text-align: center;
+    color: white;
+    font-family: 'Poppins-Medium';
+}

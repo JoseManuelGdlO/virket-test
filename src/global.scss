@@ -29,3 +29,19 @@
 *{
     font-weight:inherit;
 }
+
+.modal-wrapper{
+    --background: transparent !important;
+}
+
+.sc-ion-modal-md-h:first-of-type {
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.12);
+}
+
+.sc-ion-modal-ios-h:first-of-type {
+    --backdrop-opacity: var(--ion-backdrop-opacity, 0.08);
+}
+
+app-loading{
+    background-color: transparent !important;
+}

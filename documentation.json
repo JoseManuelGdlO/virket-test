@@ -1,0 +1,2446 @@
+{
+    "pipes": [],
+    "interfaces": [
+        {
+            "name": "AuthRepository",
+            "id": "interface-AuthRepository-2772a25bc1733074095c73a270ad92f7",
+            "file": "src/libs/core/src/domain/repository/AuthRepository.ts",
+            "type": "interface",
+            "sourceCode": "import { InjectionToken } from '@angular/core';\nimport { Observable } from 'rxjs';\n\n\nexport interface AuthRepository {\n    login: (username, password) => Observable<any>;\n}\n\nexport const AUTH_REPOSITORY = new InjectionToken('AuthRepository');\n",
+            "properties": [
+                {
+                    "name": "login",
+                    "type": "function",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 150,
+            "methods": []
+        },
+        {
+            "name": "BasePresenter",
+            "id": "interface-BasePresenter-6603f5b7493e9ec442bea02b9fa71978",
+            "file": "src/libs/core/src/presentation/base.presenter.ts",
+            "type": "interface",
+            "sourceCode": "export interface BasePresenter{\n    /**\n     * Bind a component to the presenter\n     */\n    setView(component: any);\n}",
+            "properties": [],
+            "indexSignatures": [],
+            "kind": 152,
+            "methods": [
+                {
+                    "name": "setView",
+                    "args": [
+                        {
+                            "name": "component",
+                            "type": "any"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 5,
+                    "description": "<p>Bind a component to the presenter</p>\n",
+                    "jsdoctags": [
+                        {
+                            "name": "component",
+                            "type": "any",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "injectables": [
+        {
+            "name": "ApiService",
+            "id": "injectable-ApiService-add398fa4a7beaf7cb74e6e7057e34b4",
+            "file": "src/libs/core/src/data/net/ApiService.ts",
+            "properties": [
+                {
+                    "name": "_REMOTE_END_POINTS",
+                    "defaultValue": "{\n        URL_GET_ACCOUNT_PARAMS: `${BASE_ROUTE}auth/login`,\n    }",
+                    "type": "object",
+                    "optional": false,
+                    "description": "",
+                    "line": 8,
+                    "modifierKind": [
+                        114
+                    ]
+                }
+            ],
+            "methods": [],
+            "description": "",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { BASE_ROUTE } from 'src/environments/environment';\n\n@Injectable({\n    providedIn: 'root',\n  })\n  export class ApiService {\n    public _REMOTE_END_POINTS = {\n        URL_GET_ACCOUNT_PARAMS: `${BASE_ROUTE}auth/login`,\n    };\n  }\n",
+            "type": "injectable"
+        },
+        {
+            "name": "AuthRepositoryImpl",
+            "id": "injectable-AuthRepositoryImpl-c55bffa37e0f6d73be229fca3c99409b",
+            "file": "src/libs/core/src/data/AuthRepositoryImpl.ts",
+            "properties": [
+                {
+                    "name": "_contenttype",
+                    "defaultValue": "'content-type'",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 10,
+                    "modifierKind": [
+                        112
+                    ]
+                },
+                {
+                    "name": "_headers",
+                    "defaultValue": "{}",
+                    "type": "object",
+                    "optional": false,
+                    "description": "",
+                    "line": 9,
+                    "modifierKind": [
+                        112
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "login",
+                    "args": [
+                        {
+                            "name": "username",
+                            "type": "string"
+                        },
+                        {
+                            "name": "password",
+                            "type": "string"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Observable<any>",
+                    "typeParameters": [],
+                    "line": 18,
+                    "jsdoctags": [
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setHeaders",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 14,
+                    "modifierKind": [
+                        112
+                    ]
+                }
+            ],
+            "description": "",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient, HttpHeaders } from '@angular/common/http';\nimport { Observable } from 'rxjs';\nimport { ApiService } from './net/ApiService';\nimport { AuthRepository } from '../domain/repository/AuthRepository';\n\n@Injectable()\nexport class AuthRepositoryImpl implements AuthRepository {\n  private _headers = {};\n  private _contenttype = 'content-type';\n\n  constructor(private apiService: ApiService ,private httpClient: HttpClient) { }\n\n  private setHeaders() {\n    this._headers[this._contenttype] = 'application/json';\n  }\n\n  login(\n    username: string,\n    password: string\n  ): Observable<any> {\n    const body = {\n      username,\n      password\n    };\n    this.setHeaders();\n\n    return this.httpClient.post<any>(\n      this.apiService._REMOTE_END_POINTS.URL_GET_ACCOUNT_PARAMS,\n      body,\n      {\n        headers: this._headers,\n      }\n    );\n  }\n\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "apiService",
+                        "type": "ApiService"
+                    },
+                    {
+                        "name": "httpClient",
+                        "type": "HttpClient"
+                    }
+                ],
+                "line": 10,
+                "jsdoctags": [
+                    {
+                        "name": "apiService",
+                        "type": "ApiService",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "httpClient",
+                        "type": "HttpClient",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        },
+        {
+            "name": "LoginPresenter",
+            "id": "injectable-LoginPresenter-8740514d8217f7a8061fa5b3bee91a5b",
+            "file": "src/libs/core/src/presentation/presenters/AuthPresenters/login.presenter.ts",
+            "properties": [
+                {
+                    "name": "loginUseCase",
+                    "type": "LoginUseCase",
+                    "optional": false,
+                    "description": "",
+                    "line": 13,
+                    "modifierKind": [
+                        114
+                    ]
+                },
+                {
+                    "name": "view",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 10,
+                    "modifierKind": [
+                        112
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "login",
+                    "args": [
+                        {
+                            "name": "username",
+                            "type": "string"
+                        },
+                        {
+                            "name": "password",
+                            "type": "string"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Promise<any>",
+                    "typeParameters": [],
+                    "line": 21,
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setView",
+                    "args": [
+                        {
+                            "name": "component",
+                            "type": "any"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 17,
+                    "jsdoctags": [
+                        {
+                            "name": "component",
+                            "type": "any",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "description": "",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { LoginPage } from 'src/app/pages/auth/login/login.page';\nimport { LoginUseCase } from '../../../domain/usecases/AuthUsesCase/LoginUseCase';\nimport { BasePresenter } from '../../base.presenter';\n\n@Injectable({\n    providedIn: 'root',\n  })\n  export class LoginPresenter implements BasePresenter {\n    private view: any;\n\n    constructor(\n      public loginUseCase: LoginUseCase\n    ) {}\n\n\n    setView(component: any){\n        this.view = component as LoginPage;\n    }\n\n    async login(username: string, password: string): Promise<any> {\n        try {\n            const response = await this.loginUseCase.login(username, password);\n            if (response && response.token) {\n                return response;\n            } else {\n                return null;\n            }\n        } catch (error) {\n            console.error('ERROR IN REQUEST LOGIN', error);\n            return null;\n        }\n    }\n\n\n  }\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "loginUseCase",
+                        "type": "LoginUseCase"
+                    }
+                ],
+                "line": 10,
+                "jsdoctags": [
+                    {
+                        "name": "loginUseCase",
+                        "type": "LoginUseCase",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        },
+        {
+            "name": "LoginUseCase",
+            "id": "injectable-LoginUseCase-fbc4ac6186be8e7ae4427f7f3af9dc80",
+            "file": "src/libs/core/src/domain/usecases/AuthUsesCase/LoginUseCase.ts",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "login",
+                    "args": [
+                        {
+                            "name": "username",
+                            "type": "string"
+                        },
+                        {
+                            "name": "password",
+                            "type": "string"
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "Promise<any>",
+                    "typeParameters": [],
+                    "line": 10,
+                    "jsdoctags": [
+                        {
+                            "name": "username",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "password",
+                            "type": "string",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "description": "",
+            "sourceCode": "import { Inject, Injectable } from '@angular/core';\nimport { AuthRepository, AUTH_REPOSITORY } from '../../repository/AuthRepository';\n\n@Injectable()\nexport class LoginUseCase {\n    constructor(\n      @Inject(AUTH_REPOSITORY) private authRepository: AuthRepository\n    ) { }\n\n    login(\n      username: string,\n      password: string\n    ): Promise<any> {\n        return new Promise((resolve, reject) => {\n        this.authRepository\n          .login(username, password)\n          .subscribe(resolve, reject);\n      });\n    }\n\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "authRepository",
+                        "type": "AuthRepository"
+                    }
+                ],
+                "line": 5,
+                "jsdoctags": [
+                    {
+                        "name": "authRepository",
+                        "type": "AuthRepository",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "type": "injectable"
+        }
+    ],
+    "classes": [
+        {
+            "name": "AppPage",
+            "id": "class-AppPage-0fb49cd10dd7c20b56e1ec9223a089df",
+            "file": "e2e/src/app.po.ts",
+            "type": "class",
+            "sourceCode": "import { browser, by, element } from 'protractor';\n\nexport class AppPage {\n  navigateTo() {\n    return browser.get('/');\n  }\n\n  getParagraphText() {\n    return element(by.deepCss('app-root ion-content')).getText();\n  }\n}\n",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "getParagraphText",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 8
+                },
+                {
+                    "name": "navigateTo",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 4
+                }
+            ],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "AuthBase",
+            "id": "class-AuthBase-45028c89ef0f102068fe4e0821b547ca",
+            "file": "src/app/pages/auth/auth.base.ts",
+            "type": "class",
+            "sourceCode": "import { ModalController } from \"@ionic/angular\";\nimport { LoadingComponent } from \"src/app/utilities/loading/loading.component\";\n\nexport class AuthBase {\n\n    constructor(public modalCtrl: ModalController){}\n\n    async showBaseLodaing() {\n        const modal = await this.modalCtrl.create({component: LoadingComponent, backdropDismiss: false});\n        modal.present();\n    }\n\n    closeBaseLoading() {\n        this.modalCtrl.dismiss()\n    }\n}",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "modalCtrl",
+                        "type": "ModalController"
+                    }
+                ],
+                "line": 4,
+                "jsdoctags": [
+                    {
+                        "name": "modalCtrl",
+                        "type": "ModalController",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "properties": [
+                {
+                    "name": "modalCtrl",
+                    "type": "ModalController",
+                    "optional": false,
+                    "description": "",
+                    "line": 6,
+                    "modifierKind": [
+                        114
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "closeBaseLoading",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 13
+                },
+                {
+                    "name": "showBaseLodaing",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 8,
+                    "modifierKind": [
+                        120
+                    ]
+                }
+            ],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
+            "name": "MooviColors",
+            "id": "class-MooviColors-2cc482cff356901ebdc4b22acf9abe7e",
+            "file": "src/libs/utils/values.ts",
+            "type": "class",
+            "sourceCode": "export class MooviColors {\n    primary = 'rgb(8, 76, 130)';\n    secondary = 'black'\n}",
+            "properties": [
+                {
+                    "name": "primary",
+                    "defaultValue": "'rgb(8, 76, 130)'",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 2
+                },
+                {
+                    "name": "secondary",
+                    "defaultValue": "'black'",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 3
+                }
+            ],
+            "methods": [],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        }
+    ],
+    "directives": [],
+    "components": [
+        {
+            "name": "AppComponent",
+            "id": "component-AppComponent-8f102680f495071b15f5dc9c238a6233",
+            "file": "src/app/app.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-root",
+            "styleUrls": [
+                "app.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "app.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "initializeApp",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 21
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\nimport { Platform } from '@ionic/angular';\nimport { SplashScreen } from '@ionic-native/splash-screen/ngx';\nimport { StatusBar } from '@ionic-native/status-bar/ngx';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: 'app.component.html',\n  styleUrls: ['app.component.scss']\n})\nexport class AppComponent {\n  constructor(\n    private platform: Platform,\n    private splashScreen: SplashScreen,\n    private statusBar: StatusBar\n  ) {\n    this.initializeApp();\n  }\n\n  initializeApp() {\n    this.platform.ready().then(() => {\n      this.statusBar.styleDefault();\n      this.splashScreen.hide();\n    });\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "app.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "platform",
+                        "type": "Platform"
+                    },
+                    {
+                        "name": "splashScreen",
+                        "type": "SplashScreen"
+                    },
+                    {
+                        "name": "statusBar",
+                        "type": "StatusBar"
+                    }
+                ],
+                "line": 12,
+                "jsdoctags": [
+                    {
+                        "name": "platform",
+                        "type": "Platform",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "splashScreen",
+                        "type": "SplashScreen",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "statusBar",
+                        "type": "StatusBar",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "templateData": "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app>\n"
+        },
+        {
+            "name": "DetailEventPage",
+            "id": "component-DetailEventPage-6de2555d35b9b03305c94c23aca2573a",
+            "file": "src/app/pages/events/detail-event/detail-event.page.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-detail-event",
+            "styleUrls": [
+                "./detail-event.page.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./detail-event.page.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 13
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { helloWorld } from 'src/libs/utils/function';\n\n@Component({\n  selector: 'app-detail-event',\n  templateUrl: './detail-event.page.html',\n  styleUrls: ['./detail-event.page.scss'],\n})\nexport class DetailEventPage implements OnInit {\n\n  constructor() { }\n\n  ngOnInit() {\n\n    helloWorld();\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./detail-event.page.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 9
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<ion-header>\n  <ion-toolbar>\n    <ion-title>detail-event</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n</ion-content>\n"
+        },
+        {
+            "name": "LoadingComponent",
+            "id": "component-LoadingComponent-b42fdb6aae5c830497d6bb9003becae8",
+            "file": "src/app/utilities/loading/loading.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-loading",
+            "styleUrls": [
+                "./loading.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./loading.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-loading',\n  templateUrl: './loading.component.html',\n  styleUrls: ['./loading.component.scss'],\n})\nexport class LoadingComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit() {}\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".spinner {\n    top: 50%;\n    margin: 0px auto;\n    width: 60px;\n    height: 60px;\n    position: relative;\n    text-align: center;\n    background-color: transparent;\n\n    -webkit-animation: sk-rotate 2.0s infinite linear;\n    animation: sk-rotate 2.0s infinite linear;\n  }\n  \n  .dot1, .dot2 {\n    width: 60%;\n    height: 60%;\n    display: inline-block;\n    position: absolute;\n    top: 0;\n    background-color: #46e6ff;;\n    border-radius: 100%;\n    \n    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;\n    animation: sk-bounce 2.0s infinite ease-in-out;\n  }\n  \n  .dot2 {\n    top: auto;\n    bottom: 0;\n    -webkit-animation-delay: -1.0s;\n    animation-delay: -1.0s;\n  }\n  \n  @-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}\n  @keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}\n  \n  @-webkit-keyframes sk-bounce {\n    0%, 100% { -webkit-transform: scale(0.0) }\n    50% { -webkit-transform: scale(1.0) }\n  }\n  \n  @keyframes sk-bounce {\n    0%, 100% { \n      transform: scale(0.0);\n      -webkit-transform: scale(0.0);\n    } 50% { \n      transform: scale(1.0);\n      -webkit-transform: scale(1.0);\n    }\n  }",
+                    "styleUrl": "./loading.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"spinner\">\n  <div class=\"dot1\"></div>\n  <div class=\"dot2\"></div>\n</div>"
+        },
+        {
+            "name": "LoginPage",
+            "id": "component-LoginPage-6e3400892cf588bc1ff7b01dbe2664d9",
+            "file": "src/app/pages/auth/login/login.page.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-login",
+            "styleUrls": [
+                "./login.page.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./login.page.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "loginPresenter",
+                    "type": "LoginPresenter",
+                    "optional": false,
+                    "description": "",
+                    "line": 14,
+                    "modifierKind": [
+                        114
+                    ]
+                },
+                {
+                    "name": "modalCtrl",
+                    "type": "ModalController",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "modifierKind": [
+                        114
+                    ]
+                },
+                {
+                    "name": "modalCtrl",
+                    "type": "ModalController",
+                    "optional": false,
+                    "description": "",
+                    "line": 6,
+                    "modifierKind": [
+                        114
+                    ],
+                    "inheritance": {
+                        "file": "AuthBase"
+                    }
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "login",
+                    "args": [
+                        {
+                            "name": "username",
+                            "type": ""
+                        },
+                        {
+                            "name": "password",
+                            "type": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 25,
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "username",
+                            "type": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "password",
+                            "type": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 22
+                },
+                {
+                    "name": "closeBaseLoading",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 13,
+                    "inheritance": {
+                        "file": "AuthBase"
+                    }
+                },
+                {
+                    "name": "showBaseLodaing",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 8,
+                    "modifierKind": [
+                        120
+                    ],
+                    "inheritance": {
+                        "file": "AuthBase"
+                    }
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { ModalController } from '@ionic/angular';\nimport { LoginPresenter } from 'src/libs/core/src/presentation/presenters/AuthPresenters/login.presenter';\nimport { AuthBase } from '../auth.base';\n\n@Component({\n  selector: 'app-login',\n  templateUrl: './login.page.html',\n  styleUrls: ['./login.page.scss'],\n})\nexport class LoginPage extends AuthBase implements OnInit {\n\n  constructor(\n    public loginPresenter: LoginPresenter,\n    public modalCtrl: ModalController\n  ) { \n    super(modalCtrl);\n    this.loginPresenter.setView(this);\n    this.login('hola', 'hola');\n  }\n\n  ngOnInit() {\n  }\n\n  async login(username, password){\n    const response = await this.loginPresenter.login(username, password);\n\n    if(response) {\n      console.log('Welcome');\n    } else {\n      console.log('ERROR!');\n    }\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "\n.h1Text{\n    font-family: 'Poppins';\n}",
+                    "styleUrl": "./login.page.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [
+                    {
+                        "name": "loginPresenter",
+                        "type": "LoginPresenter"
+                    },
+                    {
+                        "name": "modalCtrl",
+                        "type": "ModalController"
+                    }
+                ],
+                "line": 11,
+                "jsdoctags": [
+                    {
+                        "name": "loginPresenter",
+                        "type": "LoginPresenter",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "modalCtrl",
+                        "type": "ModalController",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": "AuthBase",
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<ion-header>\n  <ion-toolbar>\n    <ion-title>login</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n<div style=\"padding: 20px 10%;\">\n  <moovi-block-button></moovi-block-button>\n  <div style=\"margin: 10px 0 0 0;\"></div>\n  <moovi-input></moovi-input>\n</div>\n</ion-content>\n"
+        },
+        {
+            "name": "MooviBlockButtonComponent",
+            "id": "component-MooviBlockButtonComponent-c7bb0f3748047f7239c8b8fc266d0240",
+            "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "moovi-block-button",
+            "styleUrls": [
+                "./moovi-block-button.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./moovi-block-button.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "backgorundColor",
+                    "defaultValue": "'primary'",
+                    "line": 20
+                },
+                {
+                    "name": "isDisabled",
+                    "defaultValue": "false",
+                    "line": 18
+                },
+                {
+                    "name": "isFull",
+                    "defaultValue": "true",
+                    "line": 22
+                },
+                {
+                    "name": "sizeText",
+                    "defaultValue": "'medium'",
+                    "line": 16,
+                    "type": "\"short\" | \"medium\" | \"large\""
+                },
+                {
+                    "name": "subtitle",
+                    "defaultValue": "''",
+                    "line": 12
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "'Click!'",
+                    "line": 14
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter<boolean>()",
+                    "line": 25,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "color",
+                    "defaultValue": "new MooviColors()",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 31
+                },
+                {
+                    "name": "putBackground",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 29
+                },
+                {
+                    "name": "sizeSubTitle",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 28
+                },
+                {
+                    "name": "sizeTitle",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 27
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "changeSize",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 45
+                },
+                {
+                    "name": "click",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 62
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 36
+                },
+                {
+                    "name": "putBackgroundColor",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 41
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\nimport { MooviColors } from 'src/libs/utils/values';\n\n@Component({\n  selector: 'moovi-block-button',\n  templateUrl: './moovi-block-button.component.html',\n  styleUrls: ['./moovi-block-button.component.scss'],\n})\nexport class MooviBlockButtonComponent implements OnInit {\n\n  // Add subtitle to button\n  @Input() subtitle = '';\n  // Add title to button\n  @Input() title = 'Click!';\n  // Select size text medium, short, large\n  @Input() sizeText: 'short' | 'medium' | 'large' = 'medium';\n  // turn off button\n  @Input() isDisabled = false;\n  // Change background color is necesary add color in Utils/values/MooviColors class\n  @Input() backgorundColor = 'primary';\n  // Is round button or not\n  @Input() isFull = true;\n\n  // call function when click button\n  @Output() onClick = new EventEmitter<boolean>();\n\n  sizeTitle: string;\n  sizeSubTitle: string;\n  putBackground: string;\n\n  color = new MooviColors();\n\n  constructor() { \n  }\n\n  ngOnInit() {\n    this.changeSize();\n    this.putBackgroundColor();\n  }\n\n  putBackgroundColor() {\n    this.putBackground = this.color[this.backgorundColor]; \n  }\n\n  changeSize(){\n    switch (this.sizeText) {\n      case 'short':\n        this.sizeTitle = '10px';\n        this.sizeSubTitle = '5px';\n        break;\n      case 'medium':\n        this.sizeTitle = '15px';\n        this.sizeSubTitle = '10px';\n        break;\n      case 'large':\n        this.sizeTitle = '20px';\n        this.sizeSubTitle = '15px';\n        break;\n    }\n  }\n\n  click() {\n    if (!this.isDisabled) {\n      this.onClick.emit(true);\n    }\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "h1, h2, h3, h4, h5, h6 {\n    padding: 0;\n    margin: 0;\n}\n\n.buttonDiv{\n    padding: 5px 10px;\n}\n\n.borderBlock {\n    border-radius: 4px;\n}\n\n.borderRound {\n    border-radius: 30px;\n}\n\n.colorsDiv{\n    transition: opacity .3s;\n}\n\n.colorsDiv:active {\n    opacity: 80% !important;\n}\n\n.h1Style {\n    text-align: center;\n    color: white;\n    font-family: 'Poppins-Medium';\n}",
+                    "styleUrl": "./moovi-block-button.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 31
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "\n\n<div *ngIf=\"!isDisabled; else disabled\" (click)=\"click()\"\n  [ngStyle]=\"{'background-color': putBackground}\"\n  [ngClass]=\"{'borderBlock': isFull, 'borderRound': !isFull, 'buttonDiv': true, 'colorsDiv': !isDisabled, 'backgorund-color-disabled': isDisabled}\">\n  <h1 [ngStyle]=\"{'font-size': sizeTitle}\" class=\"h1Style\">\n    {{title}}\n    <span [ngStyle]=\"{'font-size': sizeSubTitle}\" *ngIf=\"subtitle\"><br>{{subtitle}}</span>\n  </h1>\n</div>\n\n<ng-template #disabled>\n  <div (click)=\"click()\"\n  [ngClass]=\"{'borderBlock': isFull, 'borderRound': !isFull,'buttonDiv': true, 'colorsDiv': !isDisabled, 'backgorund-color-disabled': isDisabled}\">\n  <h1 [ngStyle]=\"{'font-size': sizeTitle}\" class=\"h1Style\">\n    {{title}}\n    <span [ngStyle]=\"{'font-size': sizeSubTitle}\" *ngIf=\"subtitle\"><br>{{subtitle}}</span>\n  </h1>\n</div>\n</ng-template>"
+        },
+        {
+            "name": "MooviInputComponent",
+            "id": "component-MooviInputComponent-883eae1bee2ed9312b1dd81424d291e8",
+            "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "moovi-input",
+            "styleUrls": [
+                "./moovi-input.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./moovi-input.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "colorTitle",
+                    "defaultValue": "'primary'",
+                    "line": 21
+                },
+                {
+                    "name": "error",
+                    "defaultValue": "''",
+                    "line": 23
+                },
+                {
+                    "name": "iconResource",
+                    "defaultValue": "'checkmark-circle-outline'",
+                    "line": 14
+                },
+                {
+                    "name": "sizeTitle",
+                    "defaultValue": "'16px'",
+                    "line": 20
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "'Escribe tu correo'",
+                    "line": 19
+                },
+                {
+                    "name": "titleIs",
+                    "defaultValue": "'top'",
+                    "line": 18,
+                    "type": "\"top\" | \"bottom\""
+                },
+                {
+                    "name": "typeImage",
+                    "defaultValue": "'icon'",
+                    "line": 15,
+                    "type": "\"icon\" | \"asset\" | \"\""
+                },
+                {
+                    "name": "whereIcon",
+                    "defaultValue": "'right'",
+                    "line": 16,
+                    "type": "\"left\" | \"right\""
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "color",
+                    "defaultValue": "new MooviColors()",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 32
+                },
+                {
+                    "name": "ICON_LEFT",
+                    "defaultValue": "'left'",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 11
+                },
+                {
+                    "name": "leftIcon",
+                    "defaultValue": "false",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 26
+                },
+                {
+                    "name": "originalTitleColor",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 28
+                },
+                {
+                    "name": "rigthIcon",
+                    "defaultValue": "false",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 25
+                },
+                {
+                    "name": "sizeInput",
+                    "defaultValue": "12",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 30
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "haveIcon",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 50
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 36
+                },
+                {
+                    "name": "putColors",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 42
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\nimport { MooviColors } from 'src/libs/utils/values';\n\n@Component({\n  selector: 'moovi-input',\n  templateUrl: './moovi-input.component.html',\n  styleUrls: ['./moovi-input.component.scss'],\n})\nexport class MooviInputComponent implements OnInit {\n\n  ICON_LEFT = 'left';\n\n  // checkmark-circle-outline\n  @Input() iconResource = 'checkmark-circle-outline';\n  @Input() typeImage: 'icon' | 'asset' | '' = 'icon';\n  @Input() whereIcon: 'left' | 'right' = 'right';\n\n  @Input() titleIs: 'top' | 'bottom' = 'top';\n  @Input() title = 'Escribe tu correo'\n  @Input() sizeTitle = '16px';\n  @Input() colorTitle = 'primary';\n\n  @Input() error = ''\n\n  rigthIcon = false;\n  leftIcon = false;\n\n  originalTitleColor: string;\n\n  sizeInput = 12;\n\n  color = new MooviColors();\n\n  constructor() { }\n\n  ngOnInit() {\n    this.haveIcon();\n    this.putColors();\n    \n  }\n\n  putColors() {\n    if(this.colorTitle) {\n      this.originalTitleColor = this.color[this.colorTitle];\n    } else {\n      this.originalTitleColor = 'black';\n    }\n  }\n\n  haveIcon() {\n    \n    if (this.iconResource.length != 0 && this.typeImage.length != 0) {\n      this.sizeInput = 11;\n      if (this.whereIcon == this.ICON_LEFT){\n        this.leftIcon = true;\n        this.rigthIcon = false;\n      } else {\n        this.leftIcon = false;\n        this.rigthIcon = true;\n      }\n    }\n    \n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "\nh1, h2, h3, h4, h5, h6 {\n    padding: 0;\n    margin: 0;\n}\n\n.no-p-m{\n    padding: 0;\n    margin: 0;\n}\n\n.inputClass {\n    width: 99%;\n    border: none;\n    font-family: 'Poppins-Medium';\n    height: 35px;\n}\n\n.iconClass{\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    height: 35px;\n    font-size: 24px;\n}\n\n.borderInput{\n    border-bottom: 1px solid black;\n}\n\n.titleClass{\n    font-family: 'Poppins-Medium';\n    font-size: 16px;\n}\n\n.errorLabel{\n    font-family: 'Poppins-Medium';\n    font-size: 10px;\n    color: red;\n    width: 100%;\n    text-align: right;\n}",
+                    "styleUrl": "./moovi-input.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 32
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "\n  <h1 *ngIf=\"titleIs == 'top' && title.lenght != 0\" [ngStyle]=\"{'font-size': sizeTitle, 'color': originalTitleColor}\">{{title}}</h1>\n  <div class=\"row no-p-m borderInput\">\n    <div class=\"no-p-m colIcons\" *ngIf=\"leftIcon\" size=\"1\">\n      <img class=\"iconClass\" [src]=\"iconResource\" alt=\"image asset\">\n    </div>\n    <div class=\"colInput no-p-m\" [size]=\"sizeInput\">\n      <input type=\"text\" class=\"inputClass\">\n    </div>\n    <div class=\"no-p-m colIcons\" *ngIf=\"rigthIcon\" size=\"1\">\n      <img class=\"iconClass\" [src]=\"iconResource\" alt=\"image asset\">\n    </div>\n  </div>\n  <div *ngIf=\"error.lenght != 0\" class=\"row no-p-m\">\n    <h1 class=\"errorLabel\">{{error}}</h1>\n  </div>\n  <div *ngIf=\"titleIs == 'bottom' && title.lenght != 0\" class=\"row no-p-m\">\n    <h1 [ngStyle]=\"{'font-size': sizeTitle, 'color': originalTitleColor}\">{{title}}</h1>\n  </div>\n"
+        },
+        {
+            "name": "NewEventPage",
+            "id": "component-NewEventPage-373453cb51e8470d9254b6ae9aede33a",
+            "file": "src/app/pages/events/new-event/new-event.page.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-new-event",
+            "styleUrls": [
+                "./new-event.page.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./new-event.page.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-new-event',\n  templateUrl: './new-event.page.html',\n  styleUrls: ['./new-event.page.scss'],\n})\nexport class NewEventPage implements OnInit {\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./new-event.page.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<ion-header>\n  <ion-toolbar>\n    <ion-title>new-event</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n</ion-content>\n"
+        },
+        {
+            "name": "RecoveryPasswordPage",
+            "id": "component-RecoveryPasswordPage-c1cc6a469126dfe8a3d83c0af9c1973e",
+            "file": "src/app/pages/auth/recovery-password/recovery-password.page.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-recovery-password",
+            "styleUrls": [
+                "./recovery-password.page.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./recovery-password.page.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-recovery-password',\n  templateUrl: './recovery-password.page.html',\n  styleUrls: ['./recovery-password.page.scss'],\n})\nexport class RecoveryPasswordPage implements OnInit {\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./recovery-password.page.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<ion-header>\n  <ion-toolbar>\n    <ion-title>recovery-password</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n</ion-content>\n"
+        }
+    ],
+    "modules": [
+        {
+            "name": "AppModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "AppRoutingModule"
+                        },
+                        {
+                            "name": "CoreModule"
+                        },
+                        {
+                            "name": "InjectorModule"
+                        },
+                        {
+                            "name": "UsesCasesModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": [
+                        {
+                            "name": "AppComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "AppRoutingModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "AuthModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "LoginPage"
+                        },
+                        {
+                            "name": "RecoveryPasswordPage"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "AuthRoutingModule"
+                        },
+                        {
+                            "name": "SharedModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "AuthRoutingModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "CoreModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "EventsModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "DetailEventPage"
+                        },
+                        {
+                            "name": "NewEventPage"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "EventsRoutingModule"
+                        },
+                        {
+                            "name": "SharedModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "EventsRoutingModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "InjectorModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "SharedModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "UIModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "UIModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "UIModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "MooviBlockButtonComponent"
+                        },
+                        {
+                            "name": "MooviInputComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "MooviBlockButtonComponent"
+                        },
+                        {
+                            "name": "MooviInputComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "UsesCasesModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": [
+                        {
+                            "name": "LoginUseCase"
+                        }
+                    ]
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "LoginUseCase"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "AUTH_REPOSITORY",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/libs/core/src/domain/repository/AuthRepository.ts",
+                "type": "",
+                "defaultValue": "new InjectionToken('AuthRepository')"
+            },
+            {
+                "name": "BASE_ROUTE",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "type": "string",
+                "defaultValue": "'www.direction.base.com/'"
+            },
+            {
+                "name": "context",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "type": "",
+                "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Disabled",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "type": "object",
+                "defaultValue": "{\n  production: true\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.ts",
+                "type": "object",
+                "defaultValue": "{\n  production: false\n}"
+            },
+            {
+                "name": "Error",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "IconLeft",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Large",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "PlatformLanguageToken",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/libs/core/core.module.ts",
+                "type": "",
+                "defaultValue": "new InjectionToken<string>(\n    'PlatformLanguageToken'\n  )"
+            },
+            {
+                "name": "require",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/test.ts",
+                "type": "any"
+            },
+            {
+                "name": "Round",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
+                "type": "Story<MooviBlockButtonComponent>",
+                "defaultValue": "(args: MooviBlockButtonComponent) => ({\n  component: MooviBlockButtonComponent,\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                "type": "Story<MooviInputComponent>",
+                "defaultValue": "(args: MooviInputComponent) => ({\n    component: MooviInputComponent,\n    props: args,\n})"
+            },
+            {
+                "name": "TitleBottom",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "TitleTop",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "WithoutIcon",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "WithoutText",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            }
+        ],
+        "functions": [
+            {
+                "name": "helloWorld",
+                "file": "src/libs/utils/function.ts",
+                "ctype": "miscellaneous",
+                "subtype": "function",
+                "description": "",
+                "args": []
+            }
+        ],
+        "typealiases": [],
+        "enumerations": [],
+        "groupedVariables": {
+            "src/libs/core/src/domain/repository/AuthRepository.ts": [
+                {
+                    "name": "AUTH_REPOSITORY",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/libs/core/src/domain/repository/AuthRepository.ts",
+                    "type": "",
+                    "defaultValue": "new InjectionToken('AuthRepository')"
+                }
+            ],
+            "src/environments/environment.ts": [
+                {
+                    "name": "BASE_ROUTE",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "type": "string",
+                    "defaultValue": "'www.direction.base.com/'"
+                },
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.ts",
+                    "type": "object",
+                    "defaultValue": "{\n  production: false\n}"
+                }
+            ],
+            "src/test.ts": [
+                {
+                    "name": "context",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "type": "",
+                    "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
+                },
+                {
+                    "name": "require",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/test.ts",
+                    "type": "any"
+                }
+            ],
+            "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Disabled",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Large",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Round",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
+                    "type": "Story<MooviBlockButtonComponent>",
+                    "defaultValue": "(args: MooviBlockButtonComponent) => ({\n  component: MooviBlockButtonComponent,\n  props: args,\n})"
+                }
+            ],
+            "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Error",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "IconLeft",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                    "type": "Story<MooviInputComponent>",
+                    "defaultValue": "(args: MooviInputComponent) => ({\n    component: MooviInputComponent,\n    props: args,\n})"
+                },
+                {
+                    "name": "TitleBottom",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "TitleTop",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "WithoutIcon",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "WithoutText",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "type": "object",
+                    "defaultValue": "{\n  production: true\n}"
+                }
+            ],
+            "src/libs/core/core.module.ts": [
+                {
+                    "name": "PlatformLanguageToken",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/libs/core/core.module.ts",
+                    "type": "",
+                    "defaultValue": "new InjectionToken<string>(\n    'PlatformLanguageToken'\n  )"
+                }
+            ]
+        },
+        "groupedFunctions": {
+            "src/libs/utils/function.ts": [
+                {
+                    "name": "helloWorld",
+                    "file": "src/libs/utils/function.ts",
+                    "ctype": "miscellaneous",
+                    "subtype": "function",
+                    "description": "",
+                    "args": []
+                }
+            ]
+        },
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {}
+    },
+    "routes": {
+        "name": "<root>",
+        "kind": "module",
+        "className": "AppModule",
+        "children": [
+            {
+                "name": "routes",
+                "filename": "src/app/app-routing.module.ts",
+                "module": "AppRoutingModule",
+                "kind": "module"
+            }
+        ]
+    },
+    "coverage": {
+        "count": 1,
+        "status": "low",
+        "files": [
+            {
+                "filePath": "e2e/src/app.po.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "AppPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "MooviBlockButtonComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/17",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Disabled",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Large",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Round",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/moovi-input/moovi-input.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "MooviInputComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/19",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Error",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "IconLeft",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TitleBottom",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TitleTop",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithoutIcon",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithoutText",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/auth/auth.base.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "AuthBase",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/auth/login/login.page.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LoginPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/auth/recovery-password/recovery-password.page.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "RecoveryPasswordPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/events/detail-event/detail-event.page.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "DetailEventPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/events/new-event/new-event.page.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "NewEventPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/utilities/loading/loading.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LoadingComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.prod.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "BASE_ROUTE",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/environments/environment.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "environment",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/libs/core/core.module.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "PlatformLanguageToken",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/libs/core/src/data/AuthRepositoryImpl.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "AuthRepositoryImpl",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/libs/core/src/data/net/ApiService.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "ApiService",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/libs/core/src/domain/repository/AuthRepository.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "AuthRepository",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/libs/core/src/domain/repository/AuthRepository.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "AUTH_REPOSITORY",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/libs/core/src/domain/usecases/AuthUsesCase/LoginUseCase.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "LoginUseCase",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/libs/core/src/presentation/base.presenter.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "BasePresenter",
+                "coveragePercent": 50,
+                "coverageCount": "1/2",
+                "status": "medium"
+            },
+            {
+                "filePath": "src/libs/core/src/presentation/presenters/AuthPresenters/login.presenter.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "LoginPresenter",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/libs/utils/function.ts",
+                "type": "function",
+                "linksubtype": "function",
+                "name": "helloWorld",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/libs/utils/values.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "MooviColors",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "context",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/test.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "require",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}

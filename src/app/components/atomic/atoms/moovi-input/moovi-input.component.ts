@@ -15,10 +15,12 @@ export class MooviInputComponent implements OnInit {
   @Input() typeImage: 'icon' | 'asset' | '' = 'icon';
   @Input() whereIcon: 'left' | 'right' = 'right';
 
-  @Input() titleIs: 'top' | 'bottom' = 'bottom';
+  @Input() titleIs: 'top' | 'bottom' = 'top';
   @Input() title = 'Escribe tu correo'
   @Input() sizeTitle = '16px';
   @Input() colorTitle = 'primary';
+
+  @Input() error = 'not found'
 
   rigthIcon = false;
   leftIcon = false;

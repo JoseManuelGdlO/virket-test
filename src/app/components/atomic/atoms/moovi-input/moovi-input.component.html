@@ -13,9 +13,10 @@
       <img class="iconClass" *ngIf="typeImage == 'image'" [src]="iconResource" alt="image asset">
     </ion-col>
   </ion-row>
-  <ion-row>
-    <ion-col *ngIf="titleIs == 'bottom' && title.lenght != 0" size="6">
+  <ion-row *ngIf="error.lenght != 0" class="no-p-m">
+    <h1 class="errorLabel">{{error}}</h1>
+  </ion-row>
+  <ion-row *ngIf="titleIs == 'bottom' && title.lenght != 0" class="no-p-m">
       <h1 [ngStyle]="{'font-size': sizeTitle, 'color': originalTitleColor}">{{title}}</h1>
-    </ion-col>
   </ion-row>
 </ion-grid>

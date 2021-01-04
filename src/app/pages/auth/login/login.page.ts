@@ -15,7 +15,6 @@ export class LoginPage extends AuthBase implements OnInit {
     public modalCtrl: ModalController
   ) { 
     super(modalCtrl);
-    this.showLodaing();
     this.loginPresenter.setView(this);
     this.login('hola', 'hola');
   }

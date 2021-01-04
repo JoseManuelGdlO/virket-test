@@ -13,7 +13,7 @@ export class MooviBlockButtonComponent implements OnInit {
   // Add title to button
   @Input() title = 'Click!';
   // Select size text medium, short, large
-  @Input() sizeText = 'medium';
+  @Input() sizeText: 'short' | 'medium' | 'large' = 'medium';
   // turn off button
   @Input() isDisabled = false;
   // Change background color is necesary add color in Utils/values/MooviColors class
@@ -31,11 +31,12 @@ export class MooviBlockButtonComponent implements OnInit {
   color = new MooviColors();
 
   constructor() { 
+  }
+
+  ngOnInit() {
     this.changeSize();
     this.putBackgroundColor();
   }
-
-  ngOnInit() {}
 
   putBackgroundColor() {
     this.putBackground = this.color[this.backgorundColor]; 

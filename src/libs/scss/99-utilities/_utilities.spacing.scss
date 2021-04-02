@@ -25,6 +25,10 @@ _  _ ____ ____ ___ _ ____ ____ _
 
 :root{
 
+  .mar-0{
+    margin: 0;
+  }
+
   .padd-0{
     padding: 0;
   }
@@ -50,6 +54,10 @@ _  _ ____ ____ ___ _ ____ ____ _
 
   .pad-l-8{
     padding-left: 8px;
+  }
+
+  .pad-l-15{
+    padding-left: 15px;
   }
 
   .pad-l-24{
@@ -88,6 +96,10 @@ _  _ ____ ____ ___ _ ____ ____ _
     padding-bottom:40px;
   }
 
+  .pad-t-6{
+    padding-top:6px; 
+  }
+
   .pad-t-28{
     padding-top:28px; 
   }
@@ -111,10 +123,6 @@ _  _ ____ ____ ___ _ ____ ____ _
   .padd-b-t-4{
     padding-bottom: 4px;
     padding-top: 4px;
-  }
-
-  .mar-0 {
-    margin: 0;
   }
 
   .mar-top-2 {

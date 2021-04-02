@@ -1,13 +1,11 @@
 import { Routes } from '@angular/router';
-import { LoginPage } from './login/login.page';
-import { RecoveryPasswordPage } from './recovery-password/recovery-password.page';
+import { OnboardingPage } from './onboarding/onboarding.page';
 
 export const accountRoutes: Routes = [
     {
       path: '',
       children: [
-        { path: 'login', component: LoginPage },
-        { path: 'recovery-password', component: RecoveryPasswordPage },
+        { path: 'onboarding', component: OnboardingPage },
       ],
     },
   ];

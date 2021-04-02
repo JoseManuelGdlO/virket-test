@@ -1,4 +1,4 @@
-export class MooviColors {
-    primary = 'rgb(8, 76, 130)';
+export class VirketColors {
+    primary = '#F47F1F';
     secondary = 'black'
 }

@@ -6,7 +6,7 @@ export const environment = {
   production: false
 };
 
-export const BASE_ROUTE = 'www.direction.base.com/';
+export const BASE_ROUTE = 'https://run.mocky.io/v3';
 
 /*
  * For easier debugging in development mode, you can import the following file

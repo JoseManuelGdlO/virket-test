@@ -8,6 +8,8 @@ import {
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { LoginUseCase } from './src/domain/usecases/AuthUsesCase/LoginUseCase';
 import { InjectorModule } from './src/injector/injector.module';
+import { ProfileUseCase } from './src/domain/usecases/SessionUseCase/ProfileUseCase';
+import { HomeProductsUseCase } from './src/domain/usecases/SessionUseCase/HomeProductsUseCase';
 export const PlatformLanguageToken = new InjectionToken<string>(
     'PlatformLanguageToken'
   );
@@ -24,6 +26,8 @@ export const PlatformLanguageToken = new InjectionToken<string>(
         ngModule: CoreModule,
         providers: [
             LoginUseCase,
+            ProfileUseCase,
+            HomeProductsUseCase,
             InjectorModule,
           {
             provide: APP_BASE_HREF,

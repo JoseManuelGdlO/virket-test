@@ -1,0 +1,21 @@
+
+ <virket-header [profileImage]="userInformation.data.picture.thumbnail" [title]="userName" icon="assets/icon/search.svg"></virket-header>    
+
+<ion-content>
+   <ion-grid class="padd-0">
+      <ion-row class="padd-0">
+         <ion-col *ngFor="let product of products.data" class="padd-0" size="6">
+            <div style="padding-left: 15px; padding-bottom: 20px;">
+               <virket-product-thumb
+               [rating]="product.score"
+               [brand]="product.brand"
+               [name]="product.product_name"
+               [productImage]="product.product_image"
+               [total]="product.product_price"
+               [isFavorite]="false"></virket-product-thumb>
+            </div>
+         </ion-col>
+      </ion-row>
+   </ion-grid>
+   
+</ion-content>

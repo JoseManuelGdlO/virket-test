@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  { path: '', redirectTo: 'session/home', pathMatch: 'full' },
   {
     path: 'auth',
     loadChildren: () =>
@@ -11,10 +11,10 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'events',
+    path: 'session',
     loadChildren: () =>
-      import('./pages/events/events.module').then(
-        (mod) => mod.EventsModule
+      import('./pages/session/session.module').then(
+        (mod) => mod.SessionModule
       ),
   }
 ];

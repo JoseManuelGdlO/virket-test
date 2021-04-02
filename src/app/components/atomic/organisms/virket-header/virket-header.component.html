@@ -1,0 +1,8 @@
+<div class="divPrincipal">
+    <img *ngIf="profileImage.length != 0" class="imageThumbail" [src]="profileImage" alt="image profile">
+    <img *ngIf="profileImage.length == 0" class="imgButton" (click)="clickBack()" src="assets/icon/left-arrow.svg" alt="back icon">
+    <div class="divTitle">
+        <h1 class="h1Title">{{title}}</h1>
+    </div>
+    <img class="imageIcon" *ngIf="icon.length != 0" [src]="icon" alt="icon asset">
+</div>

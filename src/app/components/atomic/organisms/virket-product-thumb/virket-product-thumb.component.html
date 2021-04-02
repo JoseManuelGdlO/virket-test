@@ -1,0 +1,38 @@
+
+<div class="thumbDiv font-poppins-regular">
+    <div class="favoriteDiv" [ngClass]="{'isFavorite': isFavorite, 'notFavorite': !isFavorite}">
+        <img class="imgFavorite" src="assets/icon/favorite.svg" alt="">
+    </div>
+    <ion-grid class="padd-0">
+        <ion-row class="padd-0">
+            <ion-col class="padd-0" size="12">
+                <h7 class="mar-0 text-xxsmall mar-left-15">{{brand}}</h7>
+                <h5 class="mar-0 text-xsmall mar-left-15 font-bold">{{name}}</h5>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <div class="divImageContent">
+        <img class="imageProduct" [src]="productImage" alt="image product">
+    </div>
+    
+    <img class="backgroundImage" src="assets/images/polygon.png" alt="backgrund image">
+
+    <ion-grid class="mar-top-8 padd-0">
+        <ion-row class="padd-0">
+            <ion-col class="padd-0 pad-t-6" size="8">
+                <h7 class="mar-0 text-small font-bold mar-left-15">{{ total | currency }}</h7>
+                <div class="pad-l-15">
+                    <virket-reating [reating]="rating"></virket-reating>
+                </div>
+            </ion-col>
+            <ion-col class="padd-0">
+                <div class="divAdd">
+                    <img class="mar-top-10 width-25-px" src="assets/icon/add.svg" alt="add icon">
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+   
+
+</div>

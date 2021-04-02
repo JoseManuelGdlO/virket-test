@@ -3,10 +3,10 @@
     "interfaces": [
         {
             "name": "AuthRepository",
-            "id": "interface-AuthRepository-2772a25bc1733074095c73a270ad92f7",
+            "id": "interface-AuthRepository-a7269ca312f4b99a5d01098fdaa3609a",
             "file": "src/libs/core/src/domain/repository/AuthRepository.ts",
             "type": "interface",
-            "sourceCode": "import { InjectionToken } from '@angular/core';\nimport { Observable } from 'rxjs';\n\n\nexport interface AuthRepository {\n    login: (username, password) => Observable<any>;\n}\n\nexport const AUTH_REPOSITORY = new InjectionToken('AuthRepository');\n",
+            "sourceCode": "import { InjectionToken } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\n\r\n\r\nexport interface AuthRepository {\r\n    login: (username, password) => Observable<any>;\r\n}\r\n\r\nexport const AUTH_REPOSITORY = new InjectionToken('AuthRepository');\r\n",
             "properties": [
                 {
                     "name": "login",
@@ -22,10 +22,10 @@
         },
         {
             "name": "BasePresenter",
-            "id": "interface-BasePresenter-6603f5b7493e9ec442bea02b9fa71978",
+            "id": "interface-BasePresenter-ba45948b8e1366eabdb89b9bc6e7108f",
             "file": "src/libs/core/src/presentation/base.presenter.ts",
             "type": "interface",
-            "sourceCode": "export interface BasePresenter{\n    /**\n     * Bind a component to the presenter\n     */\n    setView(component: any);\n}",
+            "sourceCode": "export interface BasePresenter{\r\n    /**\r\n     * Bind a component to the presenter\r\n     */\r\n    setView(component: any);\r\n}",
             "properties": [],
             "indexSignatures": [],
             "kind": 152,
@@ -59,12 +59,12 @@
     "injectables": [
         {
             "name": "ApiService",
-            "id": "injectable-ApiService-add398fa4a7beaf7cb74e6e7057e34b4",
+            "id": "injectable-ApiService-fb8cdb01302d6530e8e2f3c954b350c1",
             "file": "src/libs/core/src/data/net/ApiService.ts",
             "properties": [
                 {
                     "name": "_REMOTE_END_POINTS",
-                    "defaultValue": "{\n        URL_GET_ACCOUNT_PARAMS: `${BASE_ROUTE}auth/login`,\n    }",
+                    "defaultValue": "{\r\n        URL_GET_ACCOUNT_PARAMS: `${BASE_ROUTE}auth/login`,\r\n    }",
                     "type": "object",
                     "optional": false,
                     "description": "",
@@ -76,12 +76,12 @@
             ],
             "methods": [],
             "description": "",
-            "sourceCode": "import { Injectable } from '@angular/core';\nimport { BASE_ROUTE } from 'src/environments/environment';\n\n@Injectable({\n    providedIn: 'root',\n  })\n  export class ApiService {\n    public _REMOTE_END_POINTS = {\n        URL_GET_ACCOUNT_PARAMS: `${BASE_ROUTE}auth/login`,\n    };\n  }\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { BASE_ROUTE } from 'src/environments/environment';\r\n\r\n@Injectable({\r\n    providedIn: 'root',\r\n  })\r\n  export class ApiService {\r\n    public _REMOTE_END_POINTS = {\r\n        URL_GET_ACCOUNT_PARAMS: `${BASE_ROUTE}auth/login`,\r\n    };\r\n  }\r\n",
             "type": "injectable"
         },
         {
             "name": "AuthRepositoryImpl",
-            "id": "injectable-AuthRepositoryImpl-c55bffa37e0f6d73be229fca3c99409b",
+            "id": "injectable-AuthRepositoryImpl-1dd40f7ed68916116d707c9bfc583ca6",
             "file": "src/libs/core/src/data/AuthRepositoryImpl.ts",
             "properties": [
                 {
@@ -154,7 +154,7 @@
                 }
             ],
             "description": "",
-            "sourceCode": "import { Injectable } from '@angular/core';\nimport { HttpClient, HttpHeaders } from '@angular/common/http';\nimport { Observable } from 'rxjs';\nimport { ApiService } from './net/ApiService';\nimport { AuthRepository } from '../domain/repository/AuthRepository';\n\n@Injectable()\nexport class AuthRepositoryImpl implements AuthRepository {\n  private _headers = {};\n  private _contenttype = 'content-type';\n\n  constructor(private apiService: ApiService ,private httpClient: HttpClient) { }\n\n  private setHeaders() {\n    this._headers[this._contenttype] = 'application/json';\n  }\n\n  login(\n    username: string,\n    password: string\n  ): Observable<any> {\n    const body = {\n      username,\n      password\n    };\n    this.setHeaders();\n\n    return this.httpClient.post<any>(\n      this.apiService._REMOTE_END_POINTS.URL_GET_ACCOUNT_PARAMS,\n      body,\n      {\n        headers: this._headers,\n      }\n    );\n  }\n\n}\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { HttpClient, HttpHeaders } from '@angular/common/http';\r\nimport { Observable } from 'rxjs';\r\nimport { ApiService } from './net/ApiService';\r\nimport { AuthRepository } from '../domain/repository/AuthRepository';\r\n\r\n@Injectable()\r\nexport class AuthRepositoryImpl implements AuthRepository {\r\n  private _headers = {};\r\n  private _contenttype = 'content-type';\r\n\r\n  constructor(private apiService: ApiService ,private httpClient: HttpClient) { }\r\n\r\n  private setHeaders() {\r\n    this._headers[this._contenttype] = 'application/json';\r\n  }\r\n\r\n  login(\r\n    username: string,\r\n    password: string\r\n  ): Observable<any> {\r\n    const body = {\r\n      username,\r\n      password\r\n    };\r\n    this.setHeaders();\r\n\r\n    return this.httpClient.post<any>(\r\n      this.apiService._REMOTE_END_POINTS.URL_GET_ACCOUNT_PARAMS,\r\n      body,\r\n      {\r\n        headers: this._headers,\r\n      }\r\n    );\r\n  }\r\n\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -190,7 +190,7 @@
         },
         {
             "name": "LoginPresenter",
-            "id": "injectable-LoginPresenter-8740514d8217f7a8061fa5b3bee91a5b",
+            "id": "injectable-LoginPresenter-957e9c275561d1a46b024389d892d78e",
             "file": "src/libs/core/src/presentation/presenters/AuthPresenters/login.presenter.ts",
             "properties": [
                 {
@@ -275,7 +275,7 @@
                 }
             ],
             "description": "",
-            "sourceCode": "import { Injectable } from '@angular/core';\nimport { LoginPage } from 'src/app/pages/auth/login/login.page';\nimport { LoginUseCase } from '../../../domain/usecases/AuthUsesCase/LoginUseCase';\nimport { BasePresenter } from '../../base.presenter';\n\n@Injectable({\n    providedIn: 'root',\n  })\n  export class LoginPresenter implements BasePresenter {\n    private view: any;\n\n    constructor(\n      public loginUseCase: LoginUseCase\n    ) {}\n\n\n    setView(component: any){\n        this.view = component as LoginPage;\n    }\n\n    async login(username: string, password: string): Promise<any> {\n        try {\n            const response = await this.loginUseCase.login(username, password);\n            if (response && response.token) {\n                return response;\n            } else {\n                return null;\n            }\n        } catch (error) {\n            console.error('ERROR IN REQUEST LOGIN', error);\n            return null;\n        }\n    }\n\n\n  }\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { LoginPage } from 'src/app/pages/auth/login/login.page';\r\nimport { LoginUseCase } from '../../../domain/usecases/AuthUsesCase/LoginUseCase';\r\nimport { BasePresenter } from '../../base.presenter';\r\n\r\n@Injectable({\r\n    providedIn: 'root',\r\n  })\r\n  export class LoginPresenter implements BasePresenter {\r\n    private view: any;\r\n\r\n    constructor(\r\n      public loginUseCase: LoginUseCase\r\n    ) {}\r\n\r\n\r\n    setView(component: any){\r\n        this.view = component as LoginPage;\r\n    }\r\n\r\n    async login(username: string, password: string): Promise<any> {\r\n        try {\r\n            const response = await this.loginUseCase.login(username, password);\r\n            if (response && response.token) {\r\n                return response;\r\n            } else {\r\n                return null;\r\n            }\r\n        } catch (error) {\r\n            console.error('ERROR IN REQUEST LOGIN', error);\r\n            return null;\r\n        }\r\n    }\r\n\r\n\r\n  }\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -300,7 +300,7 @@
         },
         {
             "name": "LoginUseCase",
-            "id": "injectable-LoginUseCase-fbc4ac6186be8e7ae4427f7f3af9dc80",
+            "id": "injectable-LoginUseCase-0e54cb4b4498f97f6a5ffc5427a928af",
             "file": "src/libs/core/src/domain/usecases/AuthUsesCase/LoginUseCase.ts",
             "properties": [],
             "methods": [
@@ -339,7 +339,7 @@
                 }
             ],
             "description": "",
-            "sourceCode": "import { Inject, Injectable } from '@angular/core';\nimport { AuthRepository, AUTH_REPOSITORY } from '../../repository/AuthRepository';\n\n@Injectable()\nexport class LoginUseCase {\n    constructor(\n      @Inject(AUTH_REPOSITORY) private authRepository: AuthRepository\n    ) { }\n\n    login(\n      username: string,\n      password: string\n    ): Promise<any> {\n        return new Promise((resolve, reject) => {\n        this.authRepository\n          .login(username, password)\n          .subscribe(resolve, reject);\n      });\n    }\n\n}\n",
+            "sourceCode": "import { Inject, Injectable } from '@angular/core';\r\nimport { AuthRepository, AUTH_REPOSITORY } from '../../repository/AuthRepository';\r\n\r\n@Injectable()\r\nexport class LoginUseCase {\r\n    constructor(\r\n      @Inject(AUTH_REPOSITORY) private authRepository: AuthRepository\r\n    ) { }\r\n\r\n    login(\r\n      username: string,\r\n      password: string\r\n    ): Promise<any> {\r\n        return new Promise((resolve, reject) => {\r\n        this.authRepository\r\n          .login(username, password)\r\n          .subscribe(resolve, reject);\r\n      });\r\n    }\r\n\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -366,10 +366,10 @@
     "classes": [
         {
             "name": "AppPage",
-            "id": "class-AppPage-0fb49cd10dd7c20b56e1ec9223a089df",
+            "id": "class-AppPage-1854f836777e0a639d55721717bb5bf1",
             "file": "e2e/src/app.po.ts",
             "type": "class",
-            "sourceCode": "import { browser, by, element } from 'protractor';\n\nexport class AppPage {\n  navigateTo() {\n    return browser.get('/');\n  }\n\n  getParagraphText() {\n    return element(by.deepCss('app-root ion-content')).getText();\n  }\n}\n",
+            "sourceCode": "import { browser, by, element } from 'protractor';\r\n\r\nexport class AppPage {\r\n  navigateTo() {\r\n    return browser.get('/');\r\n  }\r\n\r\n  getParagraphText() {\r\n    return element(by.deepCss('app-root ion-content')).getText();\r\n  }\r\n}\r\n",
             "properties": [],
             "methods": [
                 {
@@ -397,10 +397,10 @@
         },
         {
             "name": "AuthBase",
-            "id": "class-AuthBase-45028c89ef0f102068fe4e0821b547ca",
+            "id": "class-AuthBase-82a0b388d936ace82bbbf0c683385eec",
             "file": "src/app/pages/auth/auth.base.ts",
             "type": "class",
-            "sourceCode": "import { ModalController } from \"@ionic/angular\";\nimport { LoadingComponent } from \"src/app/utilities/loading/loading.component\";\n\nexport class AuthBase {\n\n    constructor(public modalCtrl: ModalController){}\n\n    async showBaseLodaing() {\n        const modal = await this.modalCtrl.create({component: LoadingComponent, backdropDismiss: false});\n        modal.present();\n    }\n\n    closeBaseLoading() {\n        this.modalCtrl.dismiss()\n    }\n}",
+            "sourceCode": "import { ModalController } from \"@ionic/angular\";\r\nimport { LoadingComponent } from \"src/app/utilities/loading/loading.component\";\r\n\r\nexport class AuthBase {\r\n\r\n    constructor(public modalCtrl: ModalController){}\r\n\r\n    async showBaseLodaing() {\r\n        const modal = await this.modalCtrl.create({component: LoadingComponent, backdropDismiss: false});\r\n        modal.present();\r\n    }\r\n\r\n    closeBaseLoading() {\r\n        this.modalCtrl.dismiss()\r\n    }\r\n}",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -461,15 +461,15 @@
             "hostListeners": []
         },
         {
-            "name": "MooviColors",
-            "id": "class-MooviColors-2cc482cff356901ebdc4b22acf9abe7e",
+            "name": "VirketColors",
+            "id": "class-VirketColors-dd800584fa5f15feddc8485e5932af54",
             "file": "src/libs/utils/values.ts",
             "type": "class",
-            "sourceCode": "export class MooviColors {\n    primary = 'rgb(8, 76, 130)';\n    secondary = 'black'\n}",
+            "sourceCode": "export class VirketColors {\r\n    primary = '#F47F1F';\r\n    secondary = 'black'\r\n}",
             "properties": [
                 {
                     "name": "primary",
-                    "defaultValue": "'rgb(8, 76, 130)'",
+                    "defaultValue": "'#F47F1F'",
                     "type": "string",
                     "optional": false,
                     "description": "",
@@ -496,7 +496,7 @@
     "components": [
         {
             "name": "AppComponent",
-            "id": "component-AppComponent-8f102680f495071b15f5dc9c238a6233",
+            "id": "component-AppComponent-9908e841985dd81c608e74e064b23012",
             "file": "src/app/app.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -530,7 +530,7 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core';\n\nimport { Platform } from '@ionic/angular';\nimport { SplashScreen } from '@ionic-native/splash-screen/ngx';\nimport { StatusBar } from '@ionic-native/status-bar/ngx';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: 'app.component.html',\n  styleUrls: ['app.component.scss']\n})\nexport class AppComponent {\n  constructor(\n    private platform: Platform,\n    private splashScreen: SplashScreen,\n    private statusBar: StatusBar\n  ) {\n    this.initializeApp();\n  }\n\n  initializeApp() {\n    this.platform.ready().then(() => {\n      this.statusBar.styleDefault();\n      this.splashScreen.hide();\n    });\n  }\n}\n",
+            "sourceCode": "import { Component } from '@angular/core';\r\n\r\nimport { Platform } from '@ionic/angular';\r\nimport { SplashScreen } from '@ionic-native/splash-screen/ngx';\r\nimport { StatusBar } from '@ionic-native/status-bar/ngx';\r\n\r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: 'app.component.html',\r\n  styleUrls: ['app.component.scss']\r\n})\r\nexport class AppComponent {\r\n  constructor(\r\n    private platform: Platform,\r\n    private splashScreen: SplashScreen,\r\n    private statusBar: StatusBar\r\n  ) {\r\n    this.initializeApp();\r\n  }\r\n\r\n  initializeApp() {\r\n    this.platform.ready().then(() => {\r\n      this.statusBar.styleDefault();\r\n      this.splashScreen.hide();\r\n    });\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -581,11 +581,11 @@
                     }
                 ]
             },
-            "templateData": "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app>\n"
+            "templateData": "<ion-app>\r\n  <ion-router-outlet></ion-router-outlet>\r\n</ion-app>\r\n"
         },
         {
             "name": "DetailEventPage",
-            "id": "component-DetailEventPage-6de2555d35b9b03305c94c23aca2573a",
+            "id": "component-DetailEventPage-843ae84d192854f4ae37ad1ab12102b0",
             "file": "src/app/pages/events/detail-event/detail-event.page.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -619,7 +619,7 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { helloWorld } from 'src/libs/utils/function';\n\n@Component({\n  selector: 'app-detail-event',\n  templateUrl: './detail-event.page.html',\n  styleUrls: ['./detail-event.page.scss'],\n})\nexport class DetailEventPage implements OnInit {\n\n  constructor() { }\n\n  ngOnInit() {\n\n    helloWorld();\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { helloWorld } from 'src/libs/utils/function';\r\n\r\n@Component({\r\n  selector: 'app-detail-event',\r\n  templateUrl: './detail-event.page.html',\r\n  styleUrls: ['./detail-event.page.scss'],\r\n})\r\nexport class DetailEventPage implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit() {\r\n\r\n    helloWorld();\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -637,11 +637,11 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<ion-header>\n  <ion-toolbar>\n    <ion-title>detail-event</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n</ion-content>\n"
+            "templateData": "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>detail-event</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n\r\n</ion-content>\r\n"
         },
         {
             "name": "LoadingComponent",
-            "id": "component-LoadingComponent-b42fdb6aae5c830497d6bb9003becae8",
+            "id": "component-LoadingComponent-f04155744fbf19b08c302dae052163f0",
             "file": "src/app/utilities/loading/loading.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -675,11 +675,11 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-loading',\n  templateUrl: './loading.component.html',\n  styleUrls: ['./loading.component.scss'],\n})\nexport class LoadingComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit() {}\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-loading',\r\n  templateUrl: './loading.component.html',\r\n  styleUrls: ['./loading.component.scss'],\r\n})\r\nexport class LoadingComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit() {}\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".spinner {\n    top: 50%;\n    margin: 0px auto;\n    width: 60px;\n    height: 60px;\n    position: relative;\n    text-align: center;\n    background-color: transparent;\n\n    -webkit-animation: sk-rotate 2.0s infinite linear;\n    animation: sk-rotate 2.0s infinite linear;\n  }\n  \n  .dot1, .dot2 {\n    width: 60%;\n    height: 60%;\n    display: inline-block;\n    position: absolute;\n    top: 0;\n    background-color: #46e6ff;;\n    border-radius: 100%;\n    \n    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;\n    animation: sk-bounce 2.0s infinite ease-in-out;\n  }\n  \n  .dot2 {\n    top: auto;\n    bottom: 0;\n    -webkit-animation-delay: -1.0s;\n    animation-delay: -1.0s;\n  }\n  \n  @-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}\n  @keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}\n  \n  @-webkit-keyframes sk-bounce {\n    0%, 100% { -webkit-transform: scale(0.0) }\n    50% { -webkit-transform: scale(1.0) }\n  }\n  \n  @keyframes sk-bounce {\n    0%, 100% { \n      transform: scale(0.0);\n      -webkit-transform: scale(0.0);\n    } 50% { \n      transform: scale(1.0);\n      -webkit-transform: scale(1.0);\n    }\n  }",
+                    "data": ".spinner {\r\n    top: 50%;\r\n    margin: 0px auto;\r\n    width: 60px;\r\n    height: 60px;\r\n    position: relative;\r\n    text-align: center;\r\n    background-color: transparent;\r\n\r\n    -webkit-animation: sk-rotate 2.0s infinite linear;\r\n    animation: sk-rotate 2.0s infinite linear;\r\n  }\r\n  \r\n  .dot1, .dot2 {\r\n    width: 60%;\r\n    height: 60%;\r\n    display: inline-block;\r\n    position: absolute;\r\n    top: 0;\r\n    background-color: #46e6ff;;\r\n    border-radius: 100%;\r\n    \r\n    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;\r\n    animation: sk-bounce 2.0s infinite ease-in-out;\r\n  }\r\n  \r\n  .dot2 {\r\n    top: auto;\r\n    bottom: 0;\r\n    -webkit-animation-delay: -1.0s;\r\n    animation-delay: -1.0s;\r\n  }\r\n  \r\n  @-webkit-keyframes sk-rotate { 100% { -webkit-transform: rotate(360deg) }}\r\n  @keyframes sk-rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}\r\n  \r\n  @-webkit-keyframes sk-bounce {\r\n    0%, 100% { -webkit-transform: scale(0.0) }\r\n    50% { -webkit-transform: scale(1.0) }\r\n  }\r\n  \r\n  @keyframes sk-bounce {\r\n    0%, 100% { \r\n      transform: scale(0.0);\r\n      -webkit-transform: scale(0.0);\r\n    } 50% { \r\n      transform: scale(1.0);\r\n      -webkit-transform: scale(1.0);\r\n    }\r\n  }",
                     "styleUrl": "./loading.component.scss"
                 }
             ],
@@ -693,11 +693,11 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"spinner\">\n  <div class=\"dot1\"></div>\n  <div class=\"dot2\"></div>\n</div>"
+            "templateData": "<div class=\"spinner\">\r\n  <div class=\"dot1\"></div>\r\n  <div class=\"dot2\"></div>\r\n</div>"
         },
         {
             "name": "LoginPage",
-            "id": "component-LoginPage-6e3400892cf588bc1ff7b01dbe2664d9",
+            "id": "component-LoginPage-c27742621930bdf7f59cc9ad97bd4c16",
             "file": "src/app/pages/auth/login/login.page.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -826,11 +826,11 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\nimport { ModalController } from '@ionic/angular';\nimport { LoginPresenter } from 'src/libs/core/src/presentation/presenters/AuthPresenters/login.presenter';\nimport { AuthBase } from '../auth.base';\n\n@Component({\n  selector: 'app-login',\n  templateUrl: './login.page.html',\n  styleUrls: ['./login.page.scss'],\n})\nexport class LoginPage extends AuthBase implements OnInit {\n\n  constructor(\n    public loginPresenter: LoginPresenter,\n    public modalCtrl: ModalController\n  ) { \n    super(modalCtrl);\n    this.loginPresenter.setView(this);\n    this.login('hola', 'hola');\n  }\n\n  ngOnInit() {\n  }\n\n  async login(username, password){\n    const response = await this.loginPresenter.login(username, password);\n\n    if(response) {\n      console.log('Welcome');\n    } else {\n      console.log('ERROR!');\n    }\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { ModalController } from '@ionic/angular';\r\nimport { LoginPresenter } from 'src/libs/core/src/presentation/presenters/AuthPresenters/login.presenter';\r\nimport { AuthBase } from '../auth.base';\r\n\r\n@Component({\r\n  selector: 'app-login',\r\n  templateUrl: './login.page.html',\r\n  styleUrls: ['./login.page.scss'],\r\n})\r\nexport class LoginPage extends AuthBase implements OnInit {\r\n\r\n  constructor(\r\n    public loginPresenter: LoginPresenter,\r\n    public modalCtrl: ModalController\r\n  ) { \r\n    super(modalCtrl);\r\n    this.loginPresenter.setView(this);\r\n    this.login('hola', 'hola');\r\n  }\r\n\r\n  ngOnInit() {\r\n  }\r\n\r\n  async login(username, password){\r\n    const response = await this.loginPresenter.login(username, password);\r\n\r\n    if(response) {\r\n      console.log('Welcome');\r\n    } else {\r\n      console.log('ERROR!');\r\n    }\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "\n.h1Text{\n    font-family: 'Poppins';\n}",
+                    "data": "\r\n.h1Text{\r\n    font-family: 'Poppins';\r\n}",
                     "styleUrl": "./login.page.scss"
                 }
             ],
@@ -870,160 +870,11 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<ion-header>\n  <ion-toolbar>\n    <ion-title>login</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n<div style=\"padding: 20px 10%;\">\n  <moovi-block-button></moovi-block-button>\n  <div style=\"margin: 10px 0 0 0;\"></div>\n  <moovi-input></moovi-input>\n</div>\n</ion-content>\n"
-        },
-        {
-            "name": "MooviBlockButtonComponent",
-            "id": "component-MooviBlockButtonComponent-c7bb0f3748047f7239c8b8fc266d0240",
-            "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "moovi-block-button",
-            "styleUrls": [
-                "./moovi-block-button.component.scss"
-            ],
-            "styles": [],
-            "templateUrl": [
-                "./moovi-block-button.component.html"
-            ],
-            "viewProviders": [],
-            "inputsClass": [
-                {
-                    "name": "backgorundColor",
-                    "defaultValue": "'primary'",
-                    "line": 20
-                },
-                {
-                    "name": "isDisabled",
-                    "defaultValue": "false",
-                    "line": 18
-                },
-                {
-                    "name": "isFull",
-                    "defaultValue": "true",
-                    "line": 22
-                },
-                {
-                    "name": "sizeText",
-                    "defaultValue": "'medium'",
-                    "line": 16,
-                    "type": "\"short\" | \"medium\" | \"large\""
-                },
-                {
-                    "name": "subtitle",
-                    "defaultValue": "''",
-                    "line": 12
-                },
-                {
-                    "name": "title",
-                    "defaultValue": "'Click!'",
-                    "line": 14
-                }
-            ],
-            "outputsClass": [
-                {
-                    "name": "onClick",
-                    "defaultValue": "new EventEmitter<boolean>()",
-                    "line": 25,
-                    "type": "EventEmitter"
-                }
-            ],
-            "propertiesClass": [
-                {
-                    "name": "color",
-                    "defaultValue": "new MooviColors()",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 31
-                },
-                {
-                    "name": "putBackground",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 29
-                },
-                {
-                    "name": "sizeSubTitle",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 28
-                },
-                {
-                    "name": "sizeTitle",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 27
-                }
-            ],
-            "methodsClass": [
-                {
-                    "name": "changeSize",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 45
-                },
-                {
-                    "name": "click",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 62
-                },
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 36
-                },
-                {
-                    "name": "putBackgroundColor",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 41
-                }
-            ],
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "",
-            "rawdescription": "",
-            "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\nimport { MooviColors } from 'src/libs/utils/values';\n\n@Component({\n  selector: 'moovi-block-button',\n  templateUrl: './moovi-block-button.component.html',\n  styleUrls: ['./moovi-block-button.component.scss'],\n})\nexport class MooviBlockButtonComponent implements OnInit {\n\n  // Add subtitle to button\n  @Input() subtitle = '';\n  // Add title to button\n  @Input() title = 'Click!';\n  // Select size text medium, short, large\n  @Input() sizeText: 'short' | 'medium' | 'large' = 'medium';\n  // turn off button\n  @Input() isDisabled = false;\n  // Change background color is necesary add color in Utils/values/MooviColors class\n  @Input() backgorundColor = 'primary';\n  // Is round button or not\n  @Input() isFull = true;\n\n  // call function when click button\n  @Output() onClick = new EventEmitter<boolean>();\n\n  sizeTitle: string;\n  sizeSubTitle: string;\n  putBackground: string;\n\n  color = new MooviColors();\n\n  constructor() { \n  }\n\n  ngOnInit() {\n    this.changeSize();\n    this.putBackgroundColor();\n  }\n\n  putBackgroundColor() {\n    this.putBackground = this.color[this.backgorundColor]; \n  }\n\n  changeSize(){\n    switch (this.sizeText) {\n      case 'short':\n        this.sizeTitle = '10px';\n        this.sizeSubTitle = '5px';\n        break;\n      case 'medium':\n        this.sizeTitle = '15px';\n        this.sizeSubTitle = '10px';\n        break;\n      case 'large':\n        this.sizeTitle = '20px';\n        this.sizeSubTitle = '15px';\n        break;\n    }\n  }\n\n  click() {\n    if (!this.isDisabled) {\n      this.onClick.emit(true);\n    }\n  }\n\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "h1, h2, h3, h4, h5, h6 {\n    padding: 0;\n    margin: 0;\n}\n\n.buttonDiv{\n    padding: 5px 10px;\n}\n\n.borderBlock {\n    border-radius: 4px;\n}\n\n.borderRound {\n    border-radius: 30px;\n}\n\n.colorsDiv{\n    transition: opacity .3s;\n}\n\n.colorsDiv:active {\n    opacity: 80% !important;\n}\n\n.h1Style {\n    text-align: center;\n    color: white;\n    font-family: 'Poppins-Medium';\n}",
-                    "styleUrl": "./moovi-block-button.component.scss"
-                }
-            ],
-            "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "args": [],
-                "line": 31
-            },
-            "implements": [
-                "OnInit"
-            ],
-            "templateData": "\n\n<div *ngIf=\"!isDisabled; else disabled\" (click)=\"click()\"\n  [ngStyle]=\"{'background-color': putBackground}\"\n  [ngClass]=\"{'borderBlock': isFull, 'borderRound': !isFull, 'buttonDiv': true, 'colorsDiv': !isDisabled, 'backgorund-color-disabled': isDisabled}\">\n  <h1 [ngStyle]=\"{'font-size': sizeTitle}\" class=\"h1Style\">\n    {{title}}\n    <span [ngStyle]=\"{'font-size': sizeSubTitle}\" *ngIf=\"subtitle\"><br>{{subtitle}}</span>\n  </h1>\n</div>\n\n<ng-template #disabled>\n  <div (click)=\"click()\"\n  [ngClass]=\"{'borderBlock': isFull, 'borderRound': !isFull,'buttonDiv': true, 'colorsDiv': !isDisabled, 'backgorund-color-disabled': isDisabled}\">\n  <h1 [ngStyle]=\"{'font-size': sizeTitle}\" class=\"h1Style\">\n    {{title}}\n    <span [ngStyle]=\"{'font-size': sizeSubTitle}\" *ngIf=\"subtitle\"><br>{{subtitle}}</span>\n  </h1>\n</div>\n</ng-template>"
+            "templateData": "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>login</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n<div style=\"padding: 20px 10%;\">\r\n  <moovi-block-button></moovi-block-button>\r\n  <div style=\"margin: 10px 0 0 0;\"></div>\r\n  <moovi-input></moovi-input>\r\n</div>\r\n</ion-content>\r\n"
         },
         {
             "name": "MooviInputComponent",
-            "id": "component-MooviInputComponent-883eae1bee2ed9312b1dd81424d291e8",
+            "id": "component-MooviInputComponent-ba1af06cca07dcea18ec05929916ace4",
             "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1047,7 +898,7 @@
                 },
                 {
                     "name": "error",
-                    "defaultValue": "''",
+                    "defaultValue": "'not found'",
                     "line": 23
                 },
                 {
@@ -1088,7 +939,7 @@
             "propertiesClass": [
                 {
                     "name": "color",
-                    "defaultValue": "new MooviColors()",
+                    "defaultValue": "new VirketColors()",
                     "type": "",
                     "optional": false,
                     "description": "",
@@ -1165,11 +1016,11 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\nimport { MooviColors } from 'src/libs/utils/values';\n\n@Component({\n  selector: 'moovi-input',\n  templateUrl: './moovi-input.component.html',\n  styleUrls: ['./moovi-input.component.scss'],\n})\nexport class MooviInputComponent implements OnInit {\n\n  ICON_LEFT = 'left';\n\n  // checkmark-circle-outline\n  @Input() iconResource = 'checkmark-circle-outline';\n  @Input() typeImage: 'icon' | 'asset' | '' = 'icon';\n  @Input() whereIcon: 'left' | 'right' = 'right';\n\n  @Input() titleIs: 'top' | 'bottom' = 'top';\n  @Input() title = 'Escribe tu correo'\n  @Input() sizeTitle = '16px';\n  @Input() colorTitle = 'primary';\n\n  @Input() error = ''\n\n  rigthIcon = false;\n  leftIcon = false;\n\n  originalTitleColor: string;\n\n  sizeInput = 12;\n\n  color = new MooviColors();\n\n  constructor() { }\n\n  ngOnInit() {\n    this.haveIcon();\n    this.putColors();\n    \n  }\n\n  putColors() {\n    if(this.colorTitle) {\n      this.originalTitleColor = this.color[this.colorTitle];\n    } else {\n      this.originalTitleColor = 'black';\n    }\n  }\n\n  haveIcon() {\n    \n    if (this.iconResource.length != 0 && this.typeImage.length != 0) {\n      this.sizeInput = 11;\n      if (this.whereIcon == this.ICON_LEFT){\n        this.leftIcon = true;\n        this.rigthIcon = false;\n      } else {\n        this.leftIcon = false;\n        this.rigthIcon = true;\n      }\n    }\n    \n  }\n\n}\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { VirketColors } from 'src/libs/utils/values';\r\n\r\n@Component({\r\n  selector: 'moovi-input',\r\n  templateUrl: './moovi-input.component.html',\r\n  styleUrls: ['./moovi-input.component.scss'],\r\n})\r\nexport class MooviInputComponent implements OnInit {\r\n\r\n  ICON_LEFT = 'left';\r\n\r\n  // checkmark-circle-outline\r\n  @Input() iconResource = 'checkmark-circle-outline';\r\n  @Input() typeImage: 'icon' | 'asset' | '' = 'icon';\r\n  @Input() whereIcon: 'left' | 'right' = 'right';\r\n\r\n  @Input() titleIs: 'top' | 'bottom' = 'top';\r\n  @Input() title = 'Escribe tu correo'\r\n  @Input() sizeTitle = '16px';\r\n  @Input() colorTitle = 'primary';\r\n\r\n  @Input() error = 'not found'\r\n\r\n  rigthIcon = false;\r\n  leftIcon = false;\r\n\r\n  originalTitleColor: string;\r\n\r\n  sizeInput = 12;\r\n\r\n  color = new VirketColors();\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit() {\r\n    this.haveIcon();\r\n    this.putColors();\r\n    \r\n  }\r\n\r\n  putColors() {\r\n    if(this.colorTitle) {\r\n      this.originalTitleColor = this.color[this.colorTitle];\r\n    } else {\r\n      this.originalTitleColor = 'black';\r\n    }\r\n  }\r\n\r\n  haveIcon() {\r\n    \r\n    if (this.iconResource.length != 0 && this.typeImage.length != 0) {\r\n      this.sizeInput = 11;\r\n      if (this.whereIcon == this.ICON_LEFT){\r\n        this.leftIcon = true;\r\n        this.rigthIcon = false;\r\n      } else {\r\n        this.leftIcon = false;\r\n        this.rigthIcon = true;\r\n      }\r\n    }\r\n    \r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "\nh1, h2, h3, h4, h5, h6 {\n    padding: 0;\n    margin: 0;\n}\n\n.no-p-m{\n    padding: 0;\n    margin: 0;\n}\n\n.inputClass {\n    width: 99%;\n    border: none;\n    font-family: 'Poppins-Medium';\n    height: 35px;\n}\n\n.iconClass{\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    height: 35px;\n    font-size: 24px;\n}\n\n.borderInput{\n    border-bottom: 1px solid black;\n}\n\n.titleClass{\n    font-family: 'Poppins-Medium';\n    font-size: 16px;\n}\n\n.errorLabel{\n    font-family: 'Poppins-Medium';\n    font-size: 10px;\n    color: red;\n    width: 100%;\n    text-align: right;\n}",
+                    "data": "\r\nh1, h2, h3, h4, h5, h6 {\r\n    padding: 0;\r\n    margin: 0;\r\n}\r\n\r\n.no-p-m{\r\n    padding: 0;\r\n    margin: 0;\r\n}\r\n\r\n.inputClass {\r\n    width: 99%;\r\n    border: none;\r\n    font-family: 'Poppins-Medium';\r\n    height: 35px;\r\n}\r\n\r\n.iconClass{\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    height: 35px;\r\n    font-size: 24px;\r\n}\r\n\r\n.borderInput{\r\n    border-bottom: 1px solid black;\r\n}\r\n\r\n.titleClass{\r\n    font-family: 'Poppins-Medium';\r\n    font-size: 16px;\r\n}\r\n\r\n.errorLabel{\r\n    font-family: 'Poppins-Medium';\r\n    font-size: 10px;\r\n    color: red;\r\n    width: 100%;\r\n    text-align: right;\r\n}\r\n\r\n",
                     "styleUrl": "./moovi-input.component.scss"
                 }
             ],
@@ -1183,11 +1034,11 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "\n  <h1 *ngIf=\"titleIs == 'top' && title.lenght != 0\" [ngStyle]=\"{'font-size': sizeTitle, 'color': originalTitleColor}\">{{title}}</h1>\n  <div class=\"row no-p-m borderInput\">\n    <div class=\"no-p-m colIcons\" *ngIf=\"leftIcon\" size=\"1\">\n      <img class=\"iconClass\" [src]=\"iconResource\" alt=\"image asset\">\n    </div>\n    <div class=\"colInput no-p-m\" [size]=\"sizeInput\">\n      <input type=\"text\" class=\"inputClass\">\n    </div>\n    <div class=\"no-p-m colIcons\" *ngIf=\"rigthIcon\" size=\"1\">\n      <img class=\"iconClass\" [src]=\"iconResource\" alt=\"image asset\">\n    </div>\n  </div>\n  <div *ngIf=\"error.lenght != 0\" class=\"row no-p-m\">\n    <h1 class=\"errorLabel\">{{error}}</h1>\n  </div>\n  <div *ngIf=\"titleIs == 'bottom' && title.lenght != 0\" class=\"row no-p-m\">\n    <h1 [ngStyle]=\"{'font-size': sizeTitle, 'color': originalTitleColor}\">{{title}}</h1>\n  </div>\n"
+            "templateData": "<ion-grid class=\"no-p-m\">\r\n  <h1 *ngIf=\"titleIs == 'top' && title.lenght != 0\" [ngStyle]=\"{'font-size': sizeTitle, 'color': originalTitleColor}\">{{title}}</h1>\r\n  <ion-row class=\"no-p-m borderInput\">\r\n    <ion-col class=\"no-p-m\" *ngIf=\"leftIcon\" size=\"1\">\r\n      <ion-icon class=\"iconClass\" *ngIf=\"typeImage == 'icon'\" [name]=\"iconResource\"></ion-icon>\r\n      <img class=\"iconClass\" *ngIf=\"typeImage == 'image'\" [src]=\"iconResource\" alt=\"image asset\">\r\n    </ion-col>\r\n    <ion-col class=\"no-p-m\" [size]=\"sizeInput\">\r\n      <input type=\"text\" class=\"inputClass\">\r\n    </ion-col>\r\n    <ion-col class=\"no-p-m\" *ngIf=\"rigthIcon\" size=\"1\">\r\n      <ion-icon class=\"iconClass\" *ngIf=\"typeImage == 'icon'\" [name]=\"iconResource\"></ion-icon>\r\n      <img class=\"iconClass\" *ngIf=\"typeImage == 'image'\" [src]=\"iconResource\" alt=\"image asset\">\r\n    </ion-col>\r\n  </ion-row>\r\n  <ion-row *ngIf=\"error.lenght != 0\" class=\"no-p-m\">\r\n    <h1 class=\"errorLabel\">{{error}}</h1>\r\n  </ion-row>\r\n  <ion-row *ngIf=\"titleIs == 'bottom' && title.lenght != 0\" class=\"no-p-m\">\r\n      <h1 [ngStyle]=\"{'font-size': sizeTitle, 'color': originalTitleColor}\">{{title}}</h1>\r\n  </ion-row>\r\n</ion-grid>\r\n"
         },
         {
             "name": "NewEventPage",
-            "id": "component-NewEventPage-373453cb51e8470d9254b6ae9aede33a",
+            "id": "component-NewEventPage-43e3a7dd79d9fe32649d7443306a9539",
             "file": "src/app/pages/events/new-event/new-event.page.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1221,7 +1072,7 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-new-event',\n  templateUrl: './new-event.page.html',\n  styleUrls: ['./new-event.page.scss'],\n})\nexport class NewEventPage implements OnInit {\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-new-event',\r\n  templateUrl: './new-event.page.html',\r\n  styleUrls: ['./new-event.page.scss'],\r\n})\r\nexport class NewEventPage implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit() {\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1239,11 +1090,67 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<ion-header>\n  <ion-toolbar>\n    <ion-title>new-event</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n</ion-content>\n"
+            "templateData": "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>new-event</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n\r\n</ion-content>\r\n"
+        },
+        {
+            "name": "OnboardingPage",
+            "id": "component-OnboardingPage-19c22842808959dec108159d1902f784",
+            "file": "src/app/pages/auth/onboarding/onboarding.page.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-onboarding-page",
+            "styleUrls": [
+                "./onboarding.page.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./onboarding.page.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from \"@angular/core\";\r\n\r\n@Component({\r\n    selector: 'app-onboarding-page',\r\n    templateUrl: './onboarding.page.html',\r\n    styleUrls: ['./onboarding.page.scss'],\r\n})\r\nexport class OnboardingPage implements OnInit {\r\n\r\n    constructor() { }\r\n\r\n    ngOnInit() {\r\n    }\r\n\r\n}",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./onboarding.page.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<ion-content>\r\n    <div class=\"width-100 tx-center\">\r\n        <img class=\"width-45 mar-top-10\" src=\"assets/icon/logo.png\" alt=\"logo app\">\r\n        <img class=\"mar-top-15\" src=\"assets/images/welcome.png\" alt=\"image onboarding\">\r\n\r\n        <div class=\"tx-left padd-l-r-24  mar-top-5 font-poppins-regular\">\r\n            <h1 class=\"text-big padd-0 mar-0 font-bold\">Encuentra los mejores audifonos</h1>\r\n            <h4 class=\"mar-top-18 text-small padd-0 mar-0\">Busca y adquiere los mejores audifonos de las mejores marcas al alcance de tu móvil.</h4>\r\n        </div>\r\n\r\n        <div>\r\n            <virket-button title=\"Comenzar\"></virket-button>\r\n        </div>\r\n\r\n    </div>\r\n</ion-content>"
         },
         {
             "name": "RecoveryPasswordPage",
-            "id": "component-RecoveryPasswordPage-c1cc6a469126dfe8a3d83c0af9c1973e",
+            "id": "component-RecoveryPasswordPage-a65d6c6194b6806c3f4d7d0863b53bec",
             "file": "src/app/pages/auth/recovery-password/recovery-password.page.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1277,7 +1184,7 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-recovery-password',\n  templateUrl: './recovery-password.page.html',\n  styleUrls: ['./recovery-password.page.scss'],\n})\nexport class RecoveryPasswordPage implements OnInit {\n\n  constructor() { }\n\n  ngOnInit() {\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-recovery-password',\r\n  templateUrl: './recovery-password.page.html',\r\n  styleUrls: ['./recovery-password.page.scss'],\r\n})\r\nexport class RecoveryPasswordPage implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit() {\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -1295,7 +1202,156 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<ion-header>\n  <ion-toolbar>\n    <ion-title>recovery-password</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n</ion-content>\n"
+            "templateData": "<ion-header>\r\n  <ion-toolbar>\r\n    <ion-title>recovery-password</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content>\r\n\r\n</ion-content>\r\n"
+        },
+        {
+            "name": "VirketButtonComponent",
+            "id": "component-VirketButtonComponent-37fccfb9f24bce04a674aea3aec91fd1",
+            "file": "src/app/components/atomic/atoms/virket-button/virket-button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "virket-button",
+            "styleUrls": [
+                "./virket-button.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./virket-button.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "backgorundColor",
+                    "defaultValue": "'primary'",
+                    "line": 20
+                },
+                {
+                    "name": "isDisabled",
+                    "defaultValue": "false",
+                    "line": 18
+                },
+                {
+                    "name": "isFull",
+                    "defaultValue": "true",
+                    "line": 22
+                },
+                {
+                    "name": "sizeText",
+                    "defaultValue": "'medium'",
+                    "line": 16,
+                    "type": "\"short\" | \"medium\" | \"large\""
+                },
+                {
+                    "name": "subtitle",
+                    "defaultValue": "''",
+                    "line": 12
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "'Click!'",
+                    "line": 14
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter<boolean>()",
+                    "line": 25,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "color",
+                    "defaultValue": "new VirketColors()",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 31
+                },
+                {
+                    "name": "putBackground",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 29
+                },
+                {
+                    "name": "sizeSubTitle",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 28
+                },
+                {
+                    "name": "sizeTitle",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 27
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "changeSize",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 45
+                },
+                {
+                    "name": "click",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 62
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 36
+                },
+                {
+                    "name": "putBackgroundColor",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 41
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { VirketColors } from 'src/libs/utils/values';\r\n\r\n@Component({\r\n  selector: 'virket-button',\r\n  templateUrl: './virket-button.component.html',\r\n  styleUrls: ['./virket-button.component.scss'],\r\n})\r\nexport class VirketButtonComponent implements OnInit {\r\n\r\n  // Add subtitle to button\r\n  @Input() subtitle = '';\r\n  // Add title to button\r\n  @Input() title = 'Click!';\r\n  // Select size text medium, short, large\r\n  @Input() sizeText: 'short' | 'medium' | 'large' = 'medium';\r\n  // turn off button\r\n  @Input() isDisabled = false;\r\n  // Change background color is necesary add color in Utils/values/VirketColors class\r\n  @Input() backgorundColor = 'primary';\r\n  // Is round button or not\r\n  @Input() isFull = true;\r\n\r\n  // call function when click button\r\n  @Output() onClick = new EventEmitter<boolean>();\r\n\r\n  sizeTitle: string;\r\n  sizeSubTitle: string;\r\n  putBackground: string;\r\n\r\n  color = new VirketColors();\r\n\r\n  constructor() { \r\n  }\r\n\r\n  ngOnInit() {\r\n    this.changeSize();\r\n    this.putBackgroundColor();\r\n  }\r\n\r\n  putBackgroundColor() {\r\n    this.backgorundColor = this.color[this.backgorundColor];\r\n  }\r\n\r\n  changeSize(){\r\n    switch (this.sizeText) {\r\n      case 'short':\r\n        this.sizeTitle = '10px';\r\n        this.sizeSubTitle = '5px';\r\n        break;\r\n      case 'medium':\r\n        this.sizeTitle = '15px';\r\n        this.sizeSubTitle = '10px';\r\n        break;\r\n      case 'large':\r\n        this.sizeTitle = '20px';\r\n        this.sizeSubTitle = '15px';\r\n        break;\r\n    }\r\n  }\r\n\r\n  click() {\r\n    if (!this.isDisabled) {\r\n      this.onClick.emit(true);\r\n    }\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "h1, h2, h3, h4, h5, h6 {\r\n    padding: 0;\r\n    margin: 0;\r\n}\r\n\r\n.buttonDiv{\r\n    padding: 5px 10px;\r\n}\r\n\r\n.borderBlock {\r\n    border-radius: 4px;\r\n}\r\n\r\n.borderRound {\r\n    border-radius: 30px;\r\n}\r\n\r\n.colorsDiv{\r\n    transition: opacity .3s;\r\n}\r\n\r\n.colorsDiv:active {\r\n    opacity: 80% !important;\r\n}\r\n\r\n.h1Style {\r\n    text-align: center;\r\n    color: white;\r\n    font-family: 'Poppins-Medium';\r\n}",
+                    "styleUrl": "./virket-button.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 31
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "\r\n\r\n<div *ngIf=\"!isDisabled; else disabled\" (click)=\"click()\"\r\n  [ngStyle]=\"{'background-color': putBackground}\"\r\n  [ngClass]=\"{'borderBlock': isFull, 'borderRound': !isFull, 'buttonDiv': true, 'colorsDiv': !isDisabled, 'backgorund-color-disabled': isDisabled}\">\r\n  <h1 [ngStyle]=\"{'font-size': sizeTitle}\" class=\"h1Style\">\r\n    {{title}}\r\n    <span [ngStyle]=\"{'font-size': sizeSubTitle}\" *ngIf=\"subtitle\"><br>{{subtitle}}</span>\r\n  </h1>\r\n</div>\r\n\r\n<ng-template #disabled>\r\n  <div (click)=\"click()\"\r\n  [ngClass]=\"{'borderBlock': isFull, 'borderRound': !isFull,'buttonDiv': true, 'colorsDiv': !isDisabled, 'backgorund-color-disabled': isDisabled}\">\r\n  <h1 [ngStyle]=\"{'font-size': sizeTitle}\" class=\"h1Style\">\r\n    {{title}}\r\n    <span [ngStyle]=\"{'font-size': sizeSubTitle}\" *ngIf=\"subtitle\"><br>{{subtitle}}</span>\r\n  </h1>\r\n</div>\r\n</ng-template>"
         }
     ],
     "modules": [
@@ -1390,6 +1446,9 @@
                     "elements": [
                         {
                             "name": "LoginPage"
+                        },
+                        {
+                            "name": "OnboardingPage"
                         },
                         {
                             "name": "RecoveryPasswordPage"
@@ -1628,10 +1687,10 @@
                     "type": "declarations",
                     "elements": [
                         {
-                            "name": "MooviBlockButtonComponent"
+                            "name": "MooviInputComponent"
                         },
                         {
-                            "name": "MooviInputComponent"
+                            "name": "VirketButtonComponent"
                         }
                     ]
                 },
@@ -1643,10 +1702,10 @@
                     "type": "exports",
                     "elements": [
                         {
-                            "name": "MooviBlockButtonComponent"
+                            "name": "MooviInputComponent"
                         },
                         {
-                            "name": "MooviInputComponent"
+                            "name": "VirketButtonComponent"
                         }
                     ]
                 },
@@ -1728,7 +1787,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
+                "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -1736,7 +1795,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                "file": "src/app/components/atomic/atoms/virket-button/virket-button.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -1744,7 +1803,7 @@
                 "name": "Disabled",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
+                "file": "src/app/components/atomic/atoms/virket-button/virket-button.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -1754,7 +1813,7 @@
                 "subtype": "variable",
                 "file": "src/environments/environment.prod.ts",
                 "type": "object",
-                "defaultValue": "{\n  production: true\n}"
+                "defaultValue": "{\r\n  production: true\r\n}"
             },
             {
                 "name": "environment",
@@ -1762,7 +1821,7 @@
                 "subtype": "variable",
                 "file": "src/environments/environment.ts",
                 "type": "object",
-                "defaultValue": "{\n  production: false\n}"
+                "defaultValue": "{\r\n  production: false\r\n}"
             },
             {
                 "name": "Error",
@@ -1784,7 +1843,7 @@
                 "name": "Large",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
+                "file": "src/app/components/atomic/atoms/virket-button/virket-button.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -1794,7 +1853,7 @@
                 "subtype": "variable",
                 "file": "src/libs/core/core.module.ts",
                 "type": "",
-                "defaultValue": "new InjectionToken<string>(\n    'PlatformLanguageToken'\n  )"
+                "defaultValue": "new InjectionToken<string>(\r\n    'PlatformLanguageToken'\r\n  )"
             },
             {
                 "name": "require",
@@ -1807,7 +1866,7 @@
                 "name": "Round",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
+                "file": "src/app/components/atomic/atoms/virket-button/virket-button.stories.ts",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -1815,17 +1874,17 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
-                "type": "Story<MooviBlockButtonComponent>",
-                "defaultValue": "(args: MooviBlockButtonComponent) => ({\n  component: MooviBlockButtonComponent,\n  props: args,\n})"
+                "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
+                "type": "Story<MooviInputComponent>",
+                "defaultValue": "(args: MooviInputComponent) => ({\r\n    component: MooviInputComponent,\r\n    props: args,\r\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
-                "type": "Story<MooviInputComponent>",
-                "defaultValue": "(args: MooviInputComponent) => ({\n    component: MooviInputComponent,\n    props: args,\n})"
+                "file": "src/app/components/atomic/atoms/virket-button/virket-button.stories.ts",
+                "type": "Story<VirketButtonComponent>",
+                "defaultValue": "(args: VirketButtonComponent) => ({\r\n  component: VirketButtonComponent,\r\n  props: args,\r\n})"
             },
             {
                 "name": "TitleBottom",
@@ -1898,7 +1957,7 @@
                     "subtype": "variable",
                     "file": "src/environments/environment.ts",
                     "type": "object",
-                    "defaultValue": "{\n  production: false\n}"
+                    "defaultValue": "{\r\n  production: false\r\n}"
                 }
             ],
             "src/test.ts": [
@@ -1916,48 +1975,6 @@
                     "subtype": "variable",
                     "file": "src/test.ts",
                     "type": "any"
-                }
-            ],
-            "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Disabled",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Large",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Round",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
-                    "type": "Story<MooviBlockButtonComponent>",
-                    "defaultValue": "(args: MooviBlockButtonComponent) => ({\n  component: MooviBlockButtonComponent,\n  props: args,\n})"
                 }
             ],
             "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts": [
@@ -1991,7 +2008,7 @@
                     "subtype": "variable",
                     "file": "src/app/components/atomic/atoms/moovi-input/moovi-input.stories.ts",
                     "type": "Story<MooviInputComponent>",
-                    "defaultValue": "(args: MooviInputComponent) => ({\n    component: MooviInputComponent,\n    props: args,\n})"
+                    "defaultValue": "(args: MooviInputComponent) => ({\r\n    component: MooviInputComponent,\r\n    props: args,\r\n})"
                 },
                 {
                     "name": "TitleBottom",
@@ -2026,6 +2043,48 @@
                     "defaultValue": "Template.bind({})"
                 }
             ],
+            "src/app/components/atomic/atoms/virket-button/virket-button.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atomic/atoms/virket-button/virket-button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Disabled",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atomic/atoms/virket-button/virket-button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Large",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atomic/atoms/virket-button/virket-button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Round",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atomic/atoms/virket-button/virket-button.stories.ts",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/components/atomic/atoms/virket-button/virket-button.stories.ts",
+                    "type": "Story<VirketButtonComponent>",
+                    "defaultValue": "(args: VirketButtonComponent) => ({\r\n  component: VirketButtonComponent,\r\n  props: args,\r\n})"
+                }
+            ],
             "src/environments/environment.prod.ts": [
                 {
                     "name": "environment",
@@ -2033,7 +2092,7 @@
                     "subtype": "variable",
                     "file": "src/environments/environment.prod.ts",
                     "type": "object",
-                    "defaultValue": "{\n  production: true\n}"
+                    "defaultValue": "{\r\n  production: true\r\n}"
                 }
             ],
             "src/libs/core/core.module.ts": [
@@ -2043,7 +2102,7 @@
                     "subtype": "variable",
                     "file": "src/libs/core/core.module.ts",
                     "type": "",
-                    "defaultValue": "new InjectionToken<string>(\n    'PlatformLanguageToken'\n  )"
+                    "defaultValue": "new InjectionToken<string>(\r\n    'PlatformLanguageToken'\r\n  )"
                 }
             ]
         },
@@ -2095,65 +2154,6 @@
                 "name": "AppComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "MooviBlockButtonComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/17",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Default",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Disabled",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Large",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Round",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/components/atomic/atoms/moovi-block-button/moovi-block-button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
                 "status": "low"
             },
             {
@@ -2246,6 +2246,65 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/components/atomic/atoms/virket-button/virket-button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "VirketButtonComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/17",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/virket-button/virket-button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/virket-button/virket-button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Disabled",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/virket-button/virket-button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Large",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/virket-button/virket-button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Round",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/atomic/atoms/virket-button/virket-button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/pages/auth/auth.base.ts",
                 "type": "class",
                 "linktype": "classe",
@@ -2261,6 +2320,15 @@
                 "name": "LoginPage",
                 "coveragePercent": 0,
                 "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/pages/auth/onboarding/onboarding.page.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "OnboardingPage",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -2416,7 +2484,7 @@
                 "filePath": "src/libs/utils/values.ts",
                 "type": "class",
                 "linktype": "classe",
-                "name": "MooviColors",
+                "name": "VirketColors",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
                 "status": "low"

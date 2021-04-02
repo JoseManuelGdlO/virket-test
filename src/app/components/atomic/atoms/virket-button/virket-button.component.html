@@ -1,0 +1,21 @@
+
+
+<div *ngIf="!isDisabled; else disabled" (click)="click()"
+style="padding: 14px 0;"
+  [ngStyle]="{'background-color': putBackground}"
+  [ngClass]="{'borderBlock': isFull, 'borderRound': !isFull, 'buttonDiv': true, 'colorsDiv': !isDisabled, 'backgorund-color-disabled': isDisabled}">
+  <h1 [ngStyle]="{'font-size': sizeTitle}" class="h1Style">
+    {{title}}
+    <span [ngStyle]="{'font-size': sizeSubTitle}" *ngIf="subtitle"><br>{{subtitle}}</span>
+  </h1>
+</div>
+
+<ng-template #disabled>
+  <div (click)="click()"
+  [ngClass]="{'borderBlock': isFull, 'borderRound': !isFull,'buttonDiv': true, 'colorsDiv': !isDisabled, 'backgorund-color-disabled': isDisabled}">
+  <h1 [ngStyle]="{'font-size': sizeTitle}" class="h1Style">
+    {{title}}
+    <span [ngStyle]="{'font-size': sizeSubTitle}" *ngIf="subtitle"><br>{{subtitle}}</span>
+  </h1>
+</div>
+</ng-template>

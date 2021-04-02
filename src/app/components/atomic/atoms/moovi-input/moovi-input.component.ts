@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MooviColors } from 'src/libs/utils/values';
+import { VirketColors } from 'src/libs/utils/values';
 
 @Component({
   selector: 'moovi-input',
@@ -29,7 +29,7 @@ export class MooviInputComponent implements OnInit {
 
   sizeInput = 12;
 
-  color = new MooviColors();
+  color = new VirketColors();
 
   constructor() { }
 

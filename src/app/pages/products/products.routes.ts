@@ -9,7 +9,7 @@ export const productsRoutes: Routes = [
       children: [
         { path: 'shopping-cart', component: ShoppingCartPage },
         { path: 'catalog', component: ProductCatalogPage },
-        { path: 'detail', component: ProductDetailPage },
+        { path: 'detail/:route', component: ProductDetailPage },
       ],
     },
   ];

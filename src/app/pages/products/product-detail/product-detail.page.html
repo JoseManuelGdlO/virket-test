@@ -1,11 +1,11 @@
 <ion-header class="ion-no-border">
-    <virket-header iconSize="40px" icon="assets/icon/shopping_cart_black.svg" (onIconClick)="goShoppingCart()"></virket-header>
+    <virket-header iconSize="40px" [route]="routeToSend" icon="assets/icon/shopping_cart_black.svg" (onIconClick)="goShoppingCart()"></virket-header>
 </ion-header>
 
 <ion-content class="font-poppins-regular">
 
     <div class="divImageContent">
-        <img class="imageProduct" src="https://purepng.com/public/uploads/large/headphones-1ax.png" alt="image product">
+        <img class="imageProduct" [src]="productDetail.product_image" alt="image product">
     </div>
 
     <img class="backgroundImage" src="assets/images/polygon.png" alt="backgrund image">
@@ -13,10 +13,10 @@
         <ion-grid class="padd-0">
             <ion-row class="padd-0">
                 <ion-col size="9" class="padd-0">
-                    <h5 class="mar-0 text-xbig font-bold">Sony headphone</h5>
+                    <h5 class="mar-0 font-bold" [ngStyle]="{'font-size' : fontSize }">{{ productDetail.product_name }}</h5>
                 </ion-col>
                 <ion-col class="padd-0 tx-right mar-top-22">
-                    <h5 class="mar-0 text-large color-body"> SONY</h5>
+                    <h5 class="mar-0 text-large color-body">{{ productDetail.brand }}</h5>
                 </ion-col>
             </ion-row>
             <ion-row class="padd-0">
@@ -24,10 +24,10 @@
                     <virket-reating size="24px" reating="3"></virket-reating>
                 </ion-col>
                 <ion-col style="padding: 5px 0 0 16px;" size="3" class="padd-0">
-                    <h5 class="mar-0 text-small color-body">150 reseñas</h5>
+                    <h5 class="mar-0 text-small color-body">{{ productDetail.reviews }} reseñas</h5>
                 </ion-col>
                 <ion-col class="padd-0 tx-right">
-                    <h5 class="mar-0 text-medium color-primary font-bold mar-right-4">$1,450.99</h5>
+                    <h5 class="mar-0 text-medium color-primary font-bold mar-right-4">{{ productDetail.product_price | currency }}</h5>
                 </ion-col>
             </ion-row>
         </ion-grid>
@@ -41,18 +41,18 @@
         </div>
         <h5 class="mar-0 text-small mar-top-10 font-bold">Descripción</h5>
         <h6 style="line-height: 20px;" class="mar-0 text-small mar-top-10 color-body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare aliquam placerat massa eget. In rhoncus et viverra lectus urna et. Malesuada volutpat, quam erat nulla ut. Cursus senectus pellentesque gravida massa volutpat aliquam 
+            {{ productDetail.description }}
         </h6>
 
         <ion-grid class="padd-0">
             <ion-row class="padd-0">
                 <ion-col size="3" class="padd-0">
-                    <div class="divFavorite">
-                        <img class="iconFavorite" src="assets/icon/favorite_border.svg" alt="is favorite icon">
+                    <div class="divFavorite" (click)="addToFavorite()">
+                        <img class="iconFavorite" [src]="favoriteIcon" alt="is favorite icon">
                     </div>
                 </ion-col>
                 <ion-col class="padd-0 pad-t-5">
-                    <virket-button title="Agregar al carrito" icon="assets/icon/add_shopping_cart.svg" (onClick)="start()" [isFull]="false" sizeText="medium"></virket-button>
+                    <virket-button title="Agregar al carrito" icon="assets/icon/add_shopping_cart.svg" (onClick)="addToCart()" [isFull]="false" sizeText="medium"></virket-button>
                 </ion-col>
             </ion-row>
         </ion-grid>

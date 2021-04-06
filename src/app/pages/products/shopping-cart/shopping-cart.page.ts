@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { ShoppingCartProductModel, ShoppingCartResponseModel } from "src/app/models/shopping-cart.model";
 import { ShoppingCartPresenter } from "src/libs/core/src/presentation/presenters/ProductsPresenters/shopping-cart.presenter";
+import { ProductService } from "src/libs/core/src/services/product.service";
 import { ProductsBase } from "../products.base";
 
 @Component({
@@ -12,11 +13,12 @@ import { ProductsBase } from "../products.base";
 export class ShoppingCartPage extends ProductsBase implements OnInit {
 
     heightDiv = '267px';
-    cart: ShoppingCartResponseModel= {codeMessage: '', data: {products: [], shipping:'', subtotal: '', total: ''}, ok: true}
+    cart: ShoppingCartResponseModel = { codeMessage: '', data: { products: [], shipping: '', subtotal: '', total: '' }, ok: true }
 
     constructor(
         public shoppingCartPresenter: ShoppingCartPresenter,
-        public modalController: ModalController
+        public modalController: ModalController,
+        public productService: ProductService
     ) {
         super(modalController)
     }
@@ -26,12 +28,16 @@ export class ShoppingCartPage extends ProductsBase implements OnInit {
         await this.getCart();
     }
 
+    ionViewWillEnter() {
+        this.cart.data.products = this.productService.fillCart(this.cart.data.products)
+    }
+
     async getCart() {
         this.cart = await this.shoppingCartPresenter.getCart();
-
+        this.cart.data.products = this.productService.fillCart(this.cart.data.products)
         this.calculateTotal();
         await this.closeBaseLoading();
-        
+
     }
 
     clickExpand() {
@@ -42,7 +48,7 @@ export class ShoppingCartPage extends ProductsBase implements OnInit {
         }
     }
 
-    calculateTotal(){
+    calculateTotal() {
 
         this.cart.data.total = '0';
         this.cart.data.subtotal = '0';
@@ -58,8 +64,8 @@ export class ShoppingCartPage extends ProductsBase implements OnInit {
 
     deleteProductCart(product: ShoppingCartProductModel, index: number) {
 
-        const totalprice =  String(parseFloat(product.product_price) - parseFloat(product.discount));
-        
+        const totalprice = String(parseFloat(product.product_price) - parseFloat(product.discount));
+
         this.cart.data.subtotal = String(parseFloat(this.cart.data.subtotal) - parseFloat(totalprice));
         this.cart.data.total = String(parseFloat(this.cart.data.total) - parseFloat(totalprice));
 

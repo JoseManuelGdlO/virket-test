@@ -19,11 +19,12 @@ export class ShoppingCartProductModel {
     description: string;
     discount: string;
     id: number;
-    is_favorite: false
+    is_favorite: boolean
     product_image: string;
     product_name: string;
     product_price: string;
     reviews: string;
     score: number;
     sku: string;
+    color: ColorProduct = null
 }

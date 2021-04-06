@@ -30,6 +30,10 @@ export class HomePage extends SessionBase implements OnInit {
         super(modalController)
     }
 
+    ionViewWillEnter() {
+        // this.productService.fillFavoriteProducts();
+    }
+
     async ngOnInit() {
         this.fillData();
         await this.showBaseLodaing();
@@ -50,13 +54,14 @@ export class HomePage extends SessionBase implements OnInit {
         this.userInformation = await this.homePresenter.getDetailProfile();
         
         this.userName = `Bienvenido, ${(this.userInformation.data.fullName.split(' '))[0]}`;
-        await this.closeBaseLoading();
+        
         
     }
 
     async getProducts() {
         this.products = await this.homePresenter.getProducts();
-        console.log(this.products);
+        this.productService.fillFavoriteProducts(this.products.data);
+        await this.closeBaseLoading();
         
     }
 
@@ -80,7 +85,7 @@ export class HomePage extends SessionBase implements OnInit {
 
     openDetail(item: ProductModel) {
         this.productService.queryParam = item;
-        this.router.navigateByUrl('/products/detail');
+        this.router.navigateByUrl('/products/detail/2');
     }
 
 

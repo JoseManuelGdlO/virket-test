@@ -27,7 +27,7 @@ export class VirketHeaderComponent implements OnInit {
   }
 
   clickBack(){
-    if(this.route) {
+    if(this.route) {      
       this.router.navigateByUrl(this.route);
     } else {
       this.location.back();

@@ -56,3 +56,40 @@
     border-bottom-right-radius: 20px;
     text-align: center;
 }
+
+.divOptions {
+    position: absolute;
+    z-index: 1;
+    width: 175px;
+    background-color: white;
+    transition: height .3s;
+    -webkit-box-shadow: 0px 5px 10px 2px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 5px 10px 2px rgba(0,0,0,0.2);
+    box-shadow: 0px 5px 10px 2px rgba(0,0,0,0.2);
+    border-radius: 20px;
+}
+
+.divAddFavorite {
+    height: 80px;
+    width: 175px;
+    
+    transform: display .5s;
+}
+
+.divAddCart {
+    height: 95px;
+    width: 175px;
+    background-color: #F47F1F;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transform: display .5s;
+}
+
+.h6Add{
+    padding-left: 27px;
+}
+
+.expand {
+    background-color: #F6F6F6;
+    transform: display .5s;
+} 

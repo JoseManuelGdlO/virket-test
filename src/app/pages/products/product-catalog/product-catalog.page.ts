@@ -90,7 +90,7 @@ export class ProductCatalogPage extends ProductsBase implements OnInit {
 
     openDetail(item: ProductModel) {
         this.productService.queryParam = item;
-        this.router.navigateByUrl('/products/detail');
+        this.router.navigateByUrl('/products/detail/1');
     }
 
 }

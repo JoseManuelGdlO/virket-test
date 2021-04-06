@@ -1,5 +1,17 @@
-
 <div class="thumbDiv font-poppins-regular">
+
+    <div class="divOptions" [ngStyle]="{ 'height': heightOptions }">
+        <div [ngStyle]="{'display': displayOptions }" (click)="showOptions()" class="favoriteDiv expand">
+            <img class="imgFavorite" src="assets/icon/expand_more.svg" alt="">
+        </div>
+        <div [ngStyle]="{'display': displayOptions }" (click)="addFavorite()" class="divAddFavorite flex-center tx-center">
+            <h6 class="h6Add mar-0 text-xsmall color-primary">Agregar a favoritos</h6>
+        </div>
+        <div [ngStyle]="{'display': displayOptions }" (click)="addToCart()" class="divAddCart tx-center">
+            <img style="width: 25px;" class="mar-top-20" src="assets/icon/add_shopping_cart.svg" alt="add cart">
+            <h6 class="mar-0 text-xsmall color-secondary">Agregar al carrito</h6>
+        </div>
+    </div>
     <div (click)="goProduct()" class="favoriteDiv" [ngClass]="{'isFavorite': isFavorite, 'notFavorite': !isFavorite}">
         <img class="imgFavorite" src="assets/icon/favorite.svg" alt="">
     </div>
@@ -15,7 +27,7 @@
     <div (click)="goProduct()" class="divImageContent">
         <img class="imageProduct" [src]="productImage" alt="image product">
     </div>
-    
+
     <img (click)="goProduct()" class="backgroundImage" src="assets/images/polygon.png" alt="backgrund image">
 
     <ion-grid class="mar-top-8 padd-0">
@@ -26,13 +38,14 @@
                     <virket-reating [reating]="rating"></virket-reating>
                 </div>
             </ion-col>
-            <ion-col class="padd-0">
+            <ion-col (click)="showOptions()" class="padd-0">
                 <div class="divAdd">
                     <img class="mar-top-10 width-25-px" src="assets/icon/add.svg" alt="add icon">
                 </div>
             </ion-col>
         </ion-row>
     </ion-grid>
-   
+
+
 
 </div>

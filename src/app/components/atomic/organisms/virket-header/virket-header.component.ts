@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,6 +14,9 @@ export class VirketHeaderComponent implements OnInit {
   @Input() route = null;
   @Input() profileImage = '';
   @Input() icon = '';
+  @Input() fontsize = '12px';
+  @Input() iconSize = '22px';
+  @Output() onIconClick = new EventEmitter();
 
   constructor(
     public location: Location,
@@ -21,9 +24,6 @@ export class VirketHeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(
-    this.profileImage.length
-    );
   }
 
   clickBack(){
@@ -32,6 +32,10 @@ export class VirketHeaderComponent implements OnInit {
     } else {
       this.location.back();
     }
+  }
+
+  clickIcon() {
+    this.onIconClick.emit();
   }
 
 }

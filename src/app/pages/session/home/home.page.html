@@ -1,12 +1,16 @@
-
- <virket-header [profileImage]="userInformation.data.picture.thumbnail" [title]="userName" icon="assets/icon/search.svg"></virket-header>    
-
-<ion-content>
+<ion-header class="ion-no-border">
+   <virket-header [profileImage]="userInformation.data.picture.thumbnail" [title]="userName" icon="assets/icon/search.svg"></virket-header>    
+</ion-header>
+<ion-content class="backgroundContent font-poppins-regular">
    <ion-grid class="padd-0">
       <ion-row class="padd-0">
+         <h5 class="mar-0 text-large mar-left-15">Descubre</h5>
+      </ion-row>
+      <ion-row class="mar-top-20 padd-0">
          <ion-col *ngFor="let product of products.data" class="padd-0" size="6">
-            <div style="padding-left: 15px; padding-bottom: 20px;">
+            <div style="padding-left: 8%; padding-bottom: 20px;">
                <virket-product-thumb
+               (onDetail)="openDetail(product)"
                [rating]="product.score"
                [brand]="product.brand"
                [name]="product.product_name"
@@ -17,5 +21,10 @@
          </ion-col>
       </ion-row>
    </ion-grid>
-   
+
 </ion-content>
+<ion-footer class="ion-no-border">
+   <div>
+      <virket-footer-menu></virket-footer-menu>
+  </div> 
+</ion-footer>

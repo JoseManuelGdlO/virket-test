@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
-import { ProductResponseModel } from "src/app/models/products.model";
+import { ProductModel, ProductResponseModel } from "src/app/models/products.model";
 import { UserModel, UserResponseModel } from "src/app/models/user.model";
 import { StorageItem } from "src/app/utilities/storage/storage";
-import { HomePresenter } from "src/libs/core/src/presentation/presenters/SessionPresenters/home.resenter";
+import { HomePresenter } from "src/libs/core/src/presentation/presenters/SessionPresenters/home.presenter";
+import { ProductService } from "src/libs/core/src/services/product.service";
 import { OnboardingPage } from "../../auth/onboarding/onboarding.page";
 import { SessionBase } from "../session.base";
 
@@ -23,6 +24,7 @@ export class HomePage extends SessionBase implements OnInit {
         public homePresenter: HomePresenter,
         public modalController: ModalController,
         public storage: StorageItem,
+        public productService: ProductService,
         public router: Router
     ) { 
         super(modalController)
@@ -74,6 +76,11 @@ export class HomePage extends SessionBase implements OnInit {
             return await modal.present();
         }
         
+    }
+
+    openDetail(item: ProductModel) {
+        this.productService.queryParam = item;
+        this.router.navigateByUrl('/products/detail');
     }
 
 

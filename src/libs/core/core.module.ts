@@ -6,10 +6,11 @@ import {
     InjectionToken,
   } from '@angular/core';
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
-import { LoginUseCase } from './src/domain/usecases/AuthUsesCase/LoginUseCase';
 import { InjectorModule } from './src/injector/injector.module';
 import { ProfileUseCase } from './src/domain/usecases/SessionUseCase/ProfileUseCase';
 import { HomeProductsUseCase } from './src/domain/usecases/SessionUseCase/HomeProductsUseCase';
+import { GetCartUseCase } from './src/domain/usecases/ProductsUseCase/GetCartUseCase';
+import { GetProductsCatalogUseCase } from './src/domain/usecases/ProductsUseCase/GetProductsCatalogUseCase';
 export const PlatformLanguageToken = new InjectionToken<string>(
     'PlatformLanguageToken'
   );
@@ -25,9 +26,10 @@ export const PlatformLanguageToken = new InjectionToken<string>(
       return {
         ngModule: CoreModule,
         providers: [
-            LoginUseCase,
             ProfileUseCase,
             HomeProductsUseCase,
+            GetCartUseCase,
+            GetProductsCatalogUseCase,
             InjectorModule,
           {
             provide: APP_BASE_HREF,

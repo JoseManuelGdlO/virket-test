@@ -1,9 +1,9 @@
 
 <div class="thumbDiv font-poppins-regular">
-    <div class="favoriteDiv" [ngClass]="{'isFavorite': isFavorite, 'notFavorite': !isFavorite}">
+    <div (click)="goProduct()" class="favoriteDiv" [ngClass]="{'isFavorite': isFavorite, 'notFavorite': !isFavorite}">
         <img class="imgFavorite" src="assets/icon/favorite.svg" alt="">
     </div>
-    <ion-grid class="padd-0">
+    <ion-grid (click)="goProduct()" class="padd-0">
         <ion-row class="padd-0">
             <ion-col class="padd-0" size="12">
                 <h7 class="mar-0 text-xxsmall mar-left-15">{{brand}}</h7>
@@ -12,15 +12,15 @@
         </ion-row>
     </ion-grid>
 
-    <div class="divImageContent">
+    <div (click)="goProduct()" class="divImageContent">
         <img class="imageProduct" [src]="productImage" alt="image product">
     </div>
     
-    <img class="backgroundImage" src="assets/images/polygon.png" alt="backgrund image">
+    <img (click)="goProduct()" class="backgroundImage" src="assets/images/polygon.png" alt="backgrund image">
 
     <ion-grid class="mar-top-8 padd-0">
         <ion-row class="padd-0">
-            <ion-col class="padd-0 pad-t-6" size="8">
+            <ion-col (click)="goProduct()" class="padd-0 pad-t-6" size="8">
                 <h7 class="mar-0 text-small font-bold mar-left-15">{{ total | currency }}</h7>
                 <div class="pad-l-15">
                     <virket-reating [reating]="rating"></virket-reating>

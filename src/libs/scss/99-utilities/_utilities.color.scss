@@ -26,10 +26,11 @@ ___  ____ ____ _  _ ____ ____ ____ _  _ _  _ ___
  |  |___ _/\_  |     |___ |__| |___ |__| |  \*/
 
 
- $color-primary: rgb(8, 76, 130);
- $color-active-primary: rgb(56, 120, 172);
+ $color-primary: #F47F1F;
 
  $color-disabled: #D3DCE6;
+
+ $color-body: #BDBCBC;
  
  .background-white{
     background-color: white;
@@ -41,4 +42,12 @@ ___  ____ ____ _  _ ____ ____ ____ _  _ _  _ ___
 
 .backgorund-color-disabled {
     background-color: $color-disabled;
+}
+
+.color-body {
+    color:  $color-body;
+}
+
+.color-primary {
+    color: $color-primary;
 }

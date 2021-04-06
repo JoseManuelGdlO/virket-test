@@ -16,6 +16,13 @@ const routes: Routes = [
       import('./pages/session/session.module').then(
         (mod) => mod.SessionModule
       ),
+  },
+  {
+    path: 'products',
+    loadChildren: () =>
+      import('./pages/products/products.module').then(
+        (mod) => mod.ProductsModule
+      ),
   }
 ];
 

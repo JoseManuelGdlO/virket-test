@@ -1,0 +1,83 @@
+<ion-content class="font-poppins-regular">
+    <div class="width-100">
+        <h2 class="pad-l-20 pad-0 text-large">Carrito de compras</h2>
+    </div>
+
+    <div class="mar-top-30 pad-r-l-20">
+        <ion-grid *ngFor="let product of cart.data.products; index as i" class="padd-0 divThumbCart mar-bottom-22">
+            <ion-row class="pad-r-l-20 pad-t-b-4">
+                <ion-col size="2.5" class="padd-0">
+                    <img style="height: 50px" class="imageContent mar-left-10"
+                        [src]="product.product_image" alt="product image">
+                </ion-col>
+                <ion-col size="8.5" class="padd-0 pad-t-5">
+                    <h2 class="pad-0 text-small mar-0 font-bold">{{product.product_name}}</h2>
+                    <ion-grid class="padd-0">
+                        <ion-row class="padd-0">
+                            <ion-col size="7" class="padd-0">
+                                <h6 class="mar-0 text-small color-body">Color {{product.color.name | lowercase }}</h6>
+                            </ion-col>
+                            <ion-col class="padd-0">
+                                <h6 class="mar-0 text-small font-bold">{{ product.product_price | currency }}</h6>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-col>
+                <ion-col class="padd-0">
+                    <img  (click)="deleteProductCart(product, i)" class="width-100 mar-top-15 mar-left-6" src="assets/icon/do_disturb.svg" alt="">
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    
+</ion-content>
+
+<ion-footer class="ion-no-border">
+    <div class="divPayment tx-center" (click)="clickExpand()" [ngStyle]="{'height': heightDiv}">
+        <img class="iconDismis width-12" src="assets/icon/expand_more.svg" alt="icon expand">
+        <div class="pad-r-l-50">
+            <ion-grid class="padd-0">
+                <ion-row class="padd-0 tx-left">
+                    <h6 class="mar-0 text-xsmall font-bold">Información de pago</h6>
+                </ion-row>
+                <ion-row class="padd-0 mar-top-7">
+                    <ion-col class="padd-0 tx-left">
+                        <h6 class="mar-0 text-xsmall color-body font-bold">Subtotal:</h6>
+                    </ion-col>
+                    <ion-col class="padd-0 tx-right">
+                        <h6 class="mar-0 text-xsmall font-bold">{{ cart.data.subtotal | currency }}</h6>
+                    </ion-col>
+                </ion-row>
+                <div class="divDivition"></div>
+                <ion-row class="padd-0">
+                    <ion-col class="padd-0 tx-left">
+                        <h6 class="mar-0 text-xsmall color-body font-bold">Costo de envio:</h6>
+                    </ion-col>
+                    <ion-col class="padd-0 tx-right">
+                        <h6 class="mar-0 text-xsmall font-bold">{{ cart.data.shipping | currency }}</h6>
+                    </ion-col>
+                </ion-row>
+                <div class="divDivition"></div>
+                <ion-row class="padd-0">
+                    <ion-col class="padd-0 tx-left">
+                        <h6 class="mar-0 text-xsmall font-bold">Total:</h6>
+                    </ion-col>
+                    <ion-col class="padd-0 tx-right">
+                        <h6 class="mar-0 text-xsmall font-bold"> {{ cart.data.total | currency }} </h6>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+    </div>
+    <div class="width-75 buttonPayment">
+        <h6 *ngIf="heightDiv == '0px'" (click)="clickExpand()"
+            class="mar-0 mar-bottom-14 mar-left-20 text-small color-body">Información de pago <img class="iconExpand"
+                src="assets/icon/expand_more.svg" alt="icon expand"></h6>
+        <virket-button title="Proceder al pago" (onClick)="start()" [isFull]="false" sizeText="medium"></virket-button>
+    </div> 
+    
+    <div>
+        <virket-footer-menu></virket-footer-menu>
+    </div>    
+    
+</ion-footer>

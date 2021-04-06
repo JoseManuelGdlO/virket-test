@@ -21,6 +21,8 @@ export class VirketButtonComponent implements OnInit {
   // Is round button or not
   @Input() isFull = true;
 
+  @Input() icon = '';
+
   // call function when click button
   @Output() onClick = new EventEmitter<boolean>();
 

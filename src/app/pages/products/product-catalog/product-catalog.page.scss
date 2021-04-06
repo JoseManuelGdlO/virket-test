@@ -1,0 +1,24 @@
+
+ion-content, ion-footer, ion-header {
+    --background: #F3F3F3;
+    background-color: #F3F3F3;
+}
+
+//set the width of the slide div
+.slideIon{
+    width: max-content;
+}
+
+.selectedItem{
+    background-color: #C4C4C4;
+    padding: 3px 25px;
+    border-radius: 16px;
+    color: white;
+}
+
+.notSelected{
+    background-color: #DCDCDC;
+    padding: 3px 25px;
+    border-radius: 16px;
+    color: black;
+}

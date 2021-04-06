@@ -1,0 +1,43 @@
+<ion-header style="padding: 0 5px;" class="ion-no-border">
+    <virket-header [hasBack]="false" fontsize="25px" title="Selecciona la marca" icon="assets/icon/search.svg"></virket-header>
+    <ion-slides pager="false" [options]="slideOpts" style="margin: 6px 0 6px 15px">
+        <ion-slide *ngFor="let class of classification; index as i" class="slideIon mar-right-10">
+          <div *ngIf="class.isSelected; else notSelected">
+            <div class="text-xsmall selectedItem" (click)="filterCatalog(class, false)" >{{
+                class.name
+              }}</div>
+          </div>
+          <ng-template #notSelected>
+            <div (click)="filterCatalog(class, true)" class="text-xsmall notSelected" >
+              {{ class.name }}
+            </div>
+          </ng-template>
+        </ion-slide>
+      </ion-slides>  
+</ion-header>
+
+<ion-content class="font-poppins-regular">
+  <ion-grid class="padd-0">
+    <ion-row class="mar-top-20 padd-0">
+       <ion-col *ngFor="let product of products" class="padd-0" size="6">
+          <div style="padding-left: 8%; padding-bottom: 20px;">
+             <virket-product-thumb
+             (onDetail)="openDetail(product)"
+             [rating]="product.score"
+             [brand]="product.brand"
+             [name]="product.product_name"
+             [productImage]="product.product_image"
+             [total]="product.product_price"
+             [isFavorite]="false"></virket-product-thumb>
+          </div>
+       </ion-col>
+    </ion-row>
+ </ion-grid>
+</ion-content>
+
+<ion-footer class="ion-no-border">    
+    <div>
+        <virket-footer-menu></virket-footer-menu>
+    </div>    
+    
+</ion-footer>

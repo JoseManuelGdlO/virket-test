@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class VirketReatingComponent implements OnInit {
 
   @Input() reating = 0;
+  @Input() size = '15px'
 
   ratingArr = ['assets/icon/star_border.svg','assets/icon/star_border.svg','assets/icon/star_border.svg','assets/icon/star_border.svg','assets/icon/star_border.svg']
 

@@ -36,12 +36,31 @@ _  _ ____ ____ ___ _ ____ ____ _
     padding: 25px;
   }
 
+  .pad20{
+    padding: 20px;
+  }
+
   .pad24 {
     padding: 24px;
   }
 
+  .pad-r-l-17{
+    padding-right: 17px;
+    padding-left: 17px;
+  }
+
   .pad-r-l-24{
     padding: 0 24px;
+  }
+
+  .pad-r-l-50{
+    padding-right: 50px;
+    padding-left: 50px;
+  }
+
+  .pad-r-l-20 {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .pad-l-0{
@@ -58,6 +77,10 @@ _  _ ____ ____ ___ _ ____ ____ _
 
   .pad-l-15{
     padding-left: 15px;
+  }
+
+  .pad-l-20{
+    padding-left: 20px;
   }
 
   .pad-l-24{
@@ -96,16 +119,43 @@ _  _ ____ ____ ___ _ ____ ____ _
     padding-bottom:40px;
   }
 
+  .pad-t-0{
+    padding-top: 0px; 
+  }
+
+  .pad-t-1{
+    padding-top: 1px; 
+  }
+
+  .pad-t-5{
+    padding-top: 5px; 
+  }
+
   .pad-t-6{
     padding-top:6px; 
   }
+
+  .pad-t-10{
+    padding-top:10px; 
+  }
+
 
   .pad-t-28{
     padding-top:28px; 
   }
 
+  .pad-t-b-4{
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
   .pad-t-b-8{
     padding: 8px 0;
+  }
+
+  .pad-t-b-10 {
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
   .pad-t-b-8{
@@ -161,6 +211,10 @@ _  _ ____ ____ ___ _ ____ ____ _
   .mar-top-18 {
     margin-top: 18px;
   }
+
+  .mar-top-22 {
+    margin-top: 22px;
+  }
  
   .mar-top-24 {
     margin-top: 24px;
@@ -209,6 +263,14 @@ _  _ ____ ____ ___ _ ____ ____ _
     margin-bottom:10px;
   }
 
+  .mar-bottom-14 {
+    margin-bottom:14px;
+  }
+
+  .mar-bottom-22 {
+    margin-bottom: 22px;
+  }
+
   .mar-bottom-34{
     margin-bottom: 34px;
   }
@@ -229,17 +291,26 @@ _  _ ____ ____ ___ _ ____ ____ _
     margin-right: 24px;
   }
 
-  .mar-left-15 {
-    margin-left: 15px;
+  .mar-left-6 {
+    margin-left: 6px;
+  }
+  
+  .mar-left-10 {
+    margin-left: 10px;
   }
 
   .mar-left-12 {
     margin-left: 12px;
   }
-
-  .mar-left-10 {
-    margin-left: 10px;
+  
+  .mar-left-15 {
+    margin-left: 15px;
   }
+
+  .mar-left-20 {
+    margin-left: 20px;
+  }
+
 
   .mar-left-30 {
     margin-left: 30px;
@@ -272,6 +343,10 @@ _  _ ____ ____ ___ _ ____ ____ _
 
   .mar-top-20{
     margin-top:20px;
+  }
+
+  .mar-bottom-2{
+    margin-bottom: 2px;
   }
 
   .mar-bottom-6{
@@ -351,7 +426,7 @@ _  _ ____ ____ ___ _ ____ ____ _
 
 
   .mar-right-10{
-    margin-right: 10px;
+    margin-right: 10px !important;
   }
 
   .mar-left-11{

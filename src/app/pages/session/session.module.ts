@@ -8,7 +8,7 @@ import { SessionRoutingModule } from './session.routing.module';
 
 @NgModule({
     declarations: [
-      HomePage
+      HomePage,
     ],
     providers: [],
     imports: [

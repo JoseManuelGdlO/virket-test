@@ -1,0 +1,50 @@
+.divContent {
+    text-align: center;
+}
+
+.divTabs{
+    bottom: 0;
+    height: 47px;
+    max-height: 47px;
+    border: none;
+    box-shadow: 0px -1px 5px rgb(0 0 0 / 20%);
+    border-radius: 20px 20px 0px 0px;
+    padding: 0 50px;
+    background-color: white;
+}
+
+.tabCart {
+    width: 100%;
+    z-index: 2;
+}
+
+.divCart {
+    position: absolute;
+    top: -25px;
+    width: 60px;
+    height: 60px;
+    background-color: #F47F1F;
+    border-radius: 35px;
+    margin-left: 22%;
+    transition: opacity .5s;
+}
+
+.divCart:active{
+    opacity: 80% !important;
+}
+
+.imgCart{
+    width: 30px;
+    padding: 15px;  
+}
+
+.tabShopping {
+    position: absolute;
+    width: 60px;
+    margin-left: -30px;
+}
+
+.genericImage{
+    width: 30px;
+    margin-top: 10px;
+}

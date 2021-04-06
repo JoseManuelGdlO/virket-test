@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "moovi-app",
+  "appId": "virket.jmgo.test",
+  "appName": "Aud,io",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

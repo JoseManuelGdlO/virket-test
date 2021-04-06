@@ -40,16 +40,16 @@ los comandos y las descripciones de cada 1
 Dato.- Para ejecutar cada una de estas opciones podemos ejecutarlas ya sea usando el prefijo "npm run" o "yarn" 
 
 ```
-start ---> Ejecutar nuestro ptoyecto en local
+start ---> Ejecutar nuestro proyecto en local
 ```
 ```
-start:qa --> Ejecutar nuestro ptoyecto en local con el ambiente de Calidad
+start:qa --> Ejecutar nuestro proyecto en local con el ambiente de Calidad
 ```
 ```
-start:sta --> Ejecutar nuestro ptoyecto en local con el ambiente de Stagin
+start:sta --> Ejecutar nuestro proyecto en local con el ambiente de Stagin
 ```
 ```
-start:prd --> Ejecutar nuestro ptoyecto en local con el ambiente de Produccion
+start:prd --> Ejecutar nuestro proyecto en local con el ambiente de Produccion
 ```
 ```
 build --> Compilar nuestro aplicativo
@@ -77,7 +77,7 @@ android --> Sincronizar plugins nuevos con el proyecto Android
 ```
 
 
-Adicional cree un pequeño proyecto donde se pueden vizualizar los componentes (Storybook) y sus diferentes escenarios
+Adicional cree un pequeño proyecto donde se pueden vizualizar los componentes (Storybook) y sus diferentes escenarios, solamente puse el ejemplo de un componente por falta de tiempo
 
 ```
 docs:json --> primer comando a ejecutar para que storybook pueda inicializarse

@@ -32,6 +32,7 @@ export class ProductDetailPage extends ProductsBase implements OnInit {
     fontSize: string;
     favoriteIcon = 'assets/icon/favorite_border.svg';
     routeToSend = 'session/home';
+    textButton = 'Agregar al carrito';
 
     flagCart = false;
 
@@ -118,8 +119,10 @@ export class ProductDetailPage extends ProductsBase implements OnInit {
           }
 
         if(!this.flagCart){
+            this.textButton = 'Agregar al carrito';
             this.productService.deleteCart(productShopping.id)
         } else {
+            this.textButton = 'Quitar del carrito';
             this.productService.addCartProduct(productShopping);
         }
     }

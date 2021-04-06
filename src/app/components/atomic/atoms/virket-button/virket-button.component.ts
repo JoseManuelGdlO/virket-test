@@ -8,22 +8,19 @@ import { VirketColors } from 'src/libs/utils/values';
 })
 export class VirketButtonComponent implements OnInit {
 
-  // Add subtitle to button
   @Input() subtitle = '';
-  // Add title to button
-  @Input() title = 'Click!';
-  // Select size text medium, short, large
+  titleLabel = 'Click!';
   @Input() sizeText: 'short' | 'medium' | 'large' = 'medium';
-  // turn off button
   @Input() isDisabled = false;
-  // Change background color is necesary add color in Utils/values/VirketColors class
   @Input() backgorundColor = 'primary';
-  // Is round button or not
   @Input() isFull = true;
+
+  @Input() set title(text: string) {
+    this.titleLabel = text;
+  }
 
   @Input() icon = '';
 
-  // call function when click button
   @Output() onClick = new EventEmitter<boolean>();
 
   sizeTitle: string;

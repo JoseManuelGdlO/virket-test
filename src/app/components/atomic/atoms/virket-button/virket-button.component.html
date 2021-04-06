@@ -6,7 +6,7 @@ style="padding: 14px 0;"
   [ngClass]="{'borderBlock': isFull, 'borderRound': !isFull, 'buttonDiv': true, 'colorsDiv': !isDisabled, 'backgorund-color-disabled': isDisabled}">
   <h1 [ngStyle]="{'font-size': sizeTitle}" class="h1Style">
     <img *ngIf="icon.length != 0" style="width: 8%;" [src]="icon" alt="icon">
-    {{title}}
+    {{titleLabel}}
     <span [ngStyle]="{'font-size': sizeSubTitle}" *ngIf="subtitle"><br>{{subtitle}}</span>
   </h1>
 </div>
